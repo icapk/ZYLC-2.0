@@ -57,7 +57,7 @@ public class MainActivity extends FragmentActivity {
         }
 
         mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);//除去两个TabHost中间的分隔线
-        mTabHost.setCurrentTab(0); //设置默认TabHost 第一个
+        mTabHost.setCurrentTab(1); //设置默认TabHost 第一个
     }
 
     private View builtIndicator(Tab tab )

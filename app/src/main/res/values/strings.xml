@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">SMS_Demo_1</string>
+    <string name="app_name">ZYLC</string>
     <string name="recording">记录</string>
     <string name="list">目录</string>
     <string name="about">关于</string>
-
+    <string name="toolbar_title">目录</string>
 
 </resources>
