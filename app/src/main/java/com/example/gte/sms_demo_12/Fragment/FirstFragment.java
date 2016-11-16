@@ -16,6 +16,7 @@ public class FirstFragment extends Fragment{
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_1, null);
+
     }
 
 }

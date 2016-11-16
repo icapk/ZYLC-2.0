@@ -1,8 +1,10 @@
 package com.example.gte.sms_demo_12;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v7.widget.TintTypedArray;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -40,13 +42,29 @@ public class TkToolbar extends Toolbar {
         
         initView();
 
+        if (attrs != null){
+            // <!--通过调用TintTypedArray.obtainStyledAttributes获取自定义toolbar的属性集合 -->
+            final TintTypedArray a = TintTypedArray.obtainStyledAttributes
+                    (getContext(),attrs,R.styleable.TkToolbar,defStyleAttr,0);
+            // <!--设置rightButton属性-->
+            final Drawable rightIcon = a.getDrawable(R.styleable.TkToolbar_rightButtonIcon);
+            if (rightIcon != null)
+            {
+                setRightButtinIcon(rightIcon);
+            }
+            //设置search属性
+            boolean showTbSearch = a.getBoolean(R.styleable.TkToolbar_isShowTbSearch,false);
+            tb_search.setVisibility(showTbSearch ? mView.VISIBLE : mView.GONE);
+            //回收
+            a.recycle();
+        }
+
     }
 
     private void initView() {
 
-
         if (mView ==null){
-        //读取View
+        //通过LayoutInflater获取Toolbar布局 读取View
             mInflater = LayoutInflater.from(getContext());
         mView = mInflater.inflate(R.layout.toolbar,null);
 
@@ -57,9 +75,16 @@ public class TkToolbar extends Toolbar {
         //加载layout布局
         LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
-
+        //将toolbar布局添加到TKToolbar
         addView(mView,lp);
+        }
+    }
 
+    public void setRightButtinIcon(Drawable icon)
+    {
+        if (tb_rightButton != null){
+            tb_rightButton.setImageDrawable(icon);
+            tb_rightButton.setVisibility(VISIBLE);
         }
     }
 
@@ -75,7 +100,32 @@ public class TkToolbar extends Toolbar {
         if (tb_title != null)
         {
             tb_title.setText(title);
+            showTbTitle();
+        }
+    }
+    //显示toolbar的search
+    public void showTbSearch(){
+        if (tb_search !=null){
+            tb_search.setVisibility(VISIBLE);
+        }
+    }
+    //隐藏toolbar的search
+    public void hideTbSearch(){
+        if (tb_search !=null){
+            tb_search.setVisibility(GONE);
+        }
+    }
+    //显示toolbar的title
+    public void showTbTitle(){
+        if (tb_title !=null){
             tb_title.setVisibility(VISIBLE);
         }
     }
+    //隐藏toolbar的title
+    public void hideTbTitle(){
+        if (tb_title !=null){
+            tb_title.setVisibility(GONE);
+        }
+    }
+
 }

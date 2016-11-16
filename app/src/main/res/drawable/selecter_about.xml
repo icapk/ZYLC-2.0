@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_focused="true" android:drawable="@mipmap/icon_about_selecter"/>
-    <item android:state_selected="true" android:drawable="@mipmap/icon_about_selecter"/>
-    <item android:drawable="@mipmap/icon_about"/>
+    <item android:state_focused="true" android:drawable="@mipmap/about_selecter"/>
+    <item android:state_selected="true" android:drawable="@mipmap/about_selecter"/>
+    <item android:drawable="@mipmap/about"/>
 </selector>

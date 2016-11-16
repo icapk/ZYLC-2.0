@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_focused="true" android:drawable="@mipmap/icon_recording_selecter"/>
-    <item android:state_selected="true" android:drawable="@mipmap/icon_recording_selecter"/>
-    <item android:drawable="@mipmap/icon_recording"/>
+    <item android:state_focused="true" android:drawable="@mipmap/recording_selecter"/>
+    <item android:state_selected="true" android:drawable="@mipmap/recording_selecter"/>
+    <item android:drawable="@mipmap/recording"/>
 </selector>
