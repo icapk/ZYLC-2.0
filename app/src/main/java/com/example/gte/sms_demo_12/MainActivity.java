@@ -72,6 +72,10 @@ public class MainActivity extends FragmentActivity {
         return view;
     }
 
+    /*
+     *双击返回键退出应用
+     */
+
     public void onBackPressed()
     {
         long now = System.currentTimeMillis();

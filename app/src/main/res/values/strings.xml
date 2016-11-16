@@ -4,5 +4,6 @@
     <string name="list">目录</string>
     <string name="about">关于</string>
     <string name="toolbar_title">目录</string>
+    <string name="search_warning">请输入机器号或手机号</string>
 
 </resources>
