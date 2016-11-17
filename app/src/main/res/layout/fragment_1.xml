@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5f1fa"
     android:orientation="vertical">
 
-   <!--Toolbar的layout必须是RelativeLayout-->
+    <include layout="@layout/tb_fragment"/>
 
-   <com.example.gte.sms_demo_12.TkToolbar
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:minHeight="?attr/actionBarSize"
-       android:background="?attr/colorPrimary"
-       app:rightButtonIcon="@drawable/selecter_about"
-       android:navigationIcon="@drawable/selecter_list"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/about"/>
 
-       app:title="记录"
-       >
-
-   </com.example.gte.sms_demo_12.TkToolbar>
-
-
-
-</RelativeLayout>
+</LinearLayout>

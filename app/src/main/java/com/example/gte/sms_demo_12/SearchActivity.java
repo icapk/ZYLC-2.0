@@ -1,9 +1,8 @@
-package com.example.gte.sms_demo_12.Fragment;
+package com.example.gte.sms_demo_12;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-import com.example.gte.sms_demo_12.R;
+import android.support.v7.widget.Toolbar;
 
 /**
  * Created by GTE on 2016/11/16.
@@ -15,5 +14,8 @@ public class SearchActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.search_view);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.search_toolbar);
+        toolbar.setNavigationIcon(R.mipmap.icon_logo);
     }
 }

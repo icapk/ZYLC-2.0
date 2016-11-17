@@ -13,13 +13,14 @@
         android:hint="@string/search_warning"
         android:visibility="gone"
         android:focusable="true"
+        android:layout_marginLeft="40dp"
         android:focusableInTouchMode="true"/>
 
     <TextView
         android:id="@+id/tb_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:textColor="#fff"
         android:gravity="center"
         android:textSize="20sp"

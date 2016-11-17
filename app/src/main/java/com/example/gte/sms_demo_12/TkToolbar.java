@@ -3,7 +3,6 @@ package com.example.gte.sms_demo_12;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v7.widget.TintTypedArray;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -66,7 +65,7 @@ public class TkToolbar extends Toolbar {
         if (mView ==null){
         //通过LayoutInflater获取Toolbar布局 读取View
             mInflater = LayoutInflater.from(getContext());
-        mView = mInflater.inflate(R.layout.toolbar,null);
+        mView = mInflater.inflate(R.layout.tb_layout,null);
 
         tb_search = (EditText) mView.findViewById(R.id.tb_search);
         tb_title = (TextView) mView.findViewById(R.id.tb_title);
@@ -86,6 +85,12 @@ public class TkToolbar extends Toolbar {
             tb_rightButton.setImageDrawable(icon);
             tb_rightButton.setVisibility(VISIBLE);
         }
+    }
+
+    //rightButtonIcon的监听事件
+    public void setRightButtonOnClickListener(OnClickListener li){
+        tb_rightButton.setOnClickListener(li);
+
     }
 
     //重写setTitle方法，设置title

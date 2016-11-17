@@ -5,6 +5,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,6 +23,8 @@ import com.example.gte.sms_demo_12.bean.Tab;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 public class MainActivity extends FragmentActivity {
 
     private FragmentTabHost mTabHost;
@@ -28,6 +33,7 @@ public class MainActivity extends FragmentActivity {
     private List<Tab> mTab = new ArrayList<>(3);
 
     private long firstPressTime = 0;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,9 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         initTab();
     }
+
+
+
 
     private void initTab() {
         Tab recording = new Tab(R.string.recording,R.drawable.selecter_recording,FirstFragment.class);

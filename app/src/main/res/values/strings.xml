@@ -5,5 +5,7 @@
     <string name="about">关于</string>
     <string name="toolbar_title">目录</string>
     <string name="search_warning">请输入机器号或手机号</string>
+    <string name="menu_add">添加</string>
+    <string name="menu_search">查询</string>
 
 </resources>
