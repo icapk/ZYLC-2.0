@@ -27,6 +27,7 @@ public class TkToolbar extends Toolbar {
     private EditText tb_search;
     private TextView tb_title;
     private ImageButton tb_rightButton;
+    private String tb_rightString;
 
     public TkToolbar(Context context) {
         this(context,null);
@@ -51,6 +52,8 @@ public class TkToolbar extends Toolbar {
             {
                 setRightButtinIcon(rightIcon);
             }
+
+
             //设置search属性
             boolean showTbSearch = a.getBoolean(R.styleable.TkToolbar_isShowTbSearch,false);
             tb_search.setVisibility(showTbSearch ? mView.VISIBLE : mView.GONE);
@@ -86,6 +89,7 @@ public class TkToolbar extends Toolbar {
             tb_rightButton.setVisibility(VISIBLE);
         }
     }
+
 
     //rightButtonIcon的监听事件
     public void setRightButtonOnClickListener(OnClickListener li){

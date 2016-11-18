@@ -3,6 +3,7 @@
 
     <declare-styleable name="TkToolbar">
         <attr name="rightButtonIcon" format="reference"/>
+        <attr name="rightString" format="string"/>
         <attr name="isShowTbSearch" format="boolean"/>
     </declare-styleable>
 

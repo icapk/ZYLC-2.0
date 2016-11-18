@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.SearchActivity;
 import com.example.gte.sms_demo_12.addActivity;
+
+import com.example.gte.sms_demo_12.Utils;
 
 
 /**
@@ -24,9 +27,9 @@ import com.example.gte.sms_demo_12.addActivity;
 
 public class FirstFragment extends Fragment {
     private Toolbar toolbar;
-    Intent intent_search;
-    Intent intent_add;
     private int REQUEST_CODE;
+    private Intent intent_search;
+    private Intent intent_add;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,50 +38,41 @@ public class FirstFragment extends Fragment {
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setTitle("记录");
 
-        //初始化menu菜单
-        initmenu();
+        toolbar.setNavigationIcon(R.mipmap.icon_add);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent_add = new Intent(getActivity(),addActivity.class);
+                startActivity(intent_add);}
+        });
 
-
-        return view;
-    }
-
-
-    public  void initmenu() {
-
-        toolbar.inflateMenu(R.menu.main_menu);//设置右上角的填充菜单
+        //设置右上角的填充菜单
+        toolbar.inflateMenu(R.menu.main_menu);
         //设置menu点击事件
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 //判断被点击的item
-                switch (item.getItemId()) {
-                    case R.id.menu_toolbar_add:
-                        intent_add = new Intent(getActivity(),addActivity.class);
-                        startActivity(intent_add);
-                        break;
-                    case R.id.menu_toolbar_search:
-                        /**
-                         * 从fragment跳转到Activity 跟Activity跳转一样
-                         * 只不过需要先利用fragment 的getActivity方法获取fragment所在的Activity
-                         */
-                        intent_search = new Intent();
-                        intent_search.setClass(getActivity(), SearchActivity.class);
+               if (item.getItemId() == R.id.menu_toolbar_add) {
 
-                        startActivity(intent_search);    //这里用getActivity().startActivity(intent);
-                        //如果需要返回结果则用下面的方法
-                        //startActivityForResult(intent,REQUEST_CODE);
+                        intent_search = new Intent(getActivity(),SearchActivity.class);
+                        startActivity(intent_search);
+
                 }
                 return true;
             }
         });
 
-
+        return view;
     }
+
+
+
     //用于接收Intent返回的结果
-private void onActivityResult(){
-    getActivity().startActivityForResult(intent_add, REQUEST_CODE);
-}
+//private void onActivityResult(){
+//    getActivity().startActivityForResult(intent_add, REQUEST_CODE);
+//}
 
 
 }

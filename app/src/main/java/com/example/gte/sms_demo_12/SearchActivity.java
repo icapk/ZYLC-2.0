@@ -3,19 +3,33 @@ package com.example.gte.sms_demo_12;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 /**
  * Created by GTE on 2016/11/16.
  */
 
 public class SearchActivity extends Activity {
-    @Override
+
+    Toolbar toolbar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.search_view);
+        setContentView(R.layout.activity_search);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.search_toolbar);
-        toolbar.setNavigationIcon(R.mipmap.icon_logo);
+        toolbar = (Toolbar) findViewById(R.id.search_toolbar);
+        init();
+
+
+    }
+
+    private void init() {
+        toolbar.setNavigationIcon(R.mipmap.icon_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

@@ -25,32 +25,10 @@ public class ThirdFragment extends Fragment{
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setTitle("关于");
 
-        initmenu();
         return view;
     }
 
-    public  void initmenu() {
 
-        toolbar.inflateMenu(R.menu.main_menu);//设置右上角的填充菜单
-        //设置menu点击事件
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
 
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                //判断被点击的item
-                switch (item.getItemId())
-                {
-                    case R.id.menu_toolbar_add:
-                        Toast.makeText(getContext(), R.string.menu_add, Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.menu_toolbar_search:
-                        Toast.makeText(getContext(), R.string.menu_search, Toast.LENGTH_LONG).show();
-
-                }
-
-                return true;
-            }
-        });
-    }
 
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+                <!-- Toolbar背景色 -->
+                <item name="colorPrimary">@color/colorPrimary</item>
+                <!-- 状态栏背景色 -->
+                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+                <!-- Toolbar字体色 -->
+                <item name="android:textColorPrimary">#fff</item>
+                <!-- 各控件被勾选或者被选中的颜色 -->
+                <item name="colorAccent">@color/colorAccent</item>
+
+                <!-- 系统下方导航列（虚拟按键）的背景色，但只能用在 API Level 21 (Android 5) 以上的版本 -->
+                <item name="android:navigationBarColor">@color/colorPrimary</item>
+
+                <!-- 设置无ActionBAr -->
+                <item name="android:windowActionBar">false</item>
+                <item name="android:windowNoTitle">true</item>
+
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+        </style>
+</resources>

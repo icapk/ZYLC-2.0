@@ -1,5 +1,6 @@
 package com.example.gte.sms_demo_12;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -25,7 +26,10 @@ import java.util.List;
 
 import static java.security.AccessController.getContext;
 
+
 public class MainActivity extends FragmentActivity {
+
+
 
     private FragmentTabHost mTabHost;
     private LayoutInflater mInflater;
@@ -35,43 +39,48 @@ public class MainActivity extends FragmentActivity {
     private long firstPressTime = 0;
     private Toolbar toolbar;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         initTab();
+
+
     }
 
 
 
 
     private void initTab() {
-        Tab recording = new Tab(R.string.recording,R.drawable.selecter_recording,FirstFragment.class);
-        Tab list = new Tab(R.string.list,R.drawable.selecter_list,SecondFragment.class);
-        Tab about = new Tab(R.string.about,R.drawable.selecter_about,ThirdFragment.class);
+        Tab recording = new Tab(R.string.recording, R.drawable.selecter_recording, FirstFragment.class);
+        Tab list = new Tab(R.string.list, R.drawable.selecter_list, SecondFragment.class);
+        Tab about = new Tab(R.string.about, R.drawable.selecter_about, ThirdFragment.class);
 
         mTab.add(recording);
         mTab.add(list);
         mTab.add(about);
 
         mInflater = LayoutInflater.from(this);
-        mTabHost = (FragmentTabHost)this.findViewById(android.R.id.tabhost);
-        mTabHost.setup(this,getSupportFragmentManager(),R.id.realtabcontent);
+        mTabHost = (FragmentTabHost) this.findViewById(android.R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
-        for (Tab tab :mTab)
-        {
+        for (Tab tab : mTab) {
             TabHost.TabSpec tabSpec = mTabHost.newTabSpec(getString(tab.getTitle()));
             tabSpec.setIndicator(builtIndicator(tab));
-            mTabHost.addTab(tabSpec, tab.getFragment(),null);
+            mTabHost.addTab(tabSpec, tab.getFragment(), null);
         }
 
         mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);//除去两个TabHost中间的分隔线
         mTabHost.setCurrentTab(1); //设置默认TabHost 第一个
     }
 
-    private View builtIndicator(Tab tab )
-    {
-        View view = mInflater.inflate(R.layout.tab_indicator,null);
+    private View builtIndicator(Tab tab) {
+        View view = mInflater.inflate(R.layout.tab_indicator, null);
         ImageView img = (ImageView) view.findViewById(R.id.icon_tab);
         TextView text = (TextView) view.findViewById(R.id.text_indicator);
 
@@ -85,15 +94,12 @@ public class MainActivity extends FragmentActivity {
      *双击返回键退出应用
      */
 
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         long now = System.currentTimeMillis();
-        if ((now - firstPressTime) > 2000)
-        {
-            Toast.makeText(MainActivity.this,"再按一次退出", Toast.LENGTH_SHORT).show();
+        if ((now - firstPressTime) > 2000) {
+            Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
             firstPressTime = now;
-        }else
-        {
+        } else {
             finish();
             System.exit(0);
         }

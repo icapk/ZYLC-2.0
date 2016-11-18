@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        app:rightButtonIcon="@mipmap/icon_back"
         app:title="@string/menu_add">
 
 
