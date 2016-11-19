@@ -25,6 +25,8 @@ public class ThirdFragment extends Fragment{
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setTitle("关于");
 
+
+
         return view;
     }
 

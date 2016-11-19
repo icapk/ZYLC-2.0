@@ -40,7 +40,8 @@ public class SecondFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 intent_add = new Intent(getActivity(),addActivity.class);
-                startActivity(intent_add);}
+                startActivityForResult(intent_add,1);
+            }
         });
 
 

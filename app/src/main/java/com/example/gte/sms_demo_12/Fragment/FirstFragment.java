@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gte.sms_demo_12.R;
@@ -16,6 +18,8 @@ import com.example.gte.sms_demo_12.SearchActivity;
 import com.example.gte.sms_demo_12.addActivity;
 
 import com.example.gte.sms_demo_12.Utils;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -26,10 +30,11 @@ import com.example.gte.sms_demo_12.Utils;
 
 
 public class FirstFragment extends Fragment {
+
     private Toolbar toolbar;
-    private int REQUEST_CODE;
     private Intent intent_search;
     private Intent intent_add;
+    private TextView receive_data;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,6 +42,8 @@ public class FirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_1, null);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setTitle("记录");
+
+        receive_data = (TextView) view.findViewById(R.id.receive_data);
 
         toolbar.setNavigationIcon(R.mipmap.icon_add);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -70,9 +77,25 @@ public class FirstFragment extends Fragment {
 
 
     //用于接收Intent返回的结果
-//private void onActivityResult(){
-//    getActivity().startActivityForResult(intent_add, REQUEST_CODE);
-//}
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+            switch (requestCode) {
+
+            case 1:
+
+                if (resultCode == RESULT_OK) {
+
+                    String machine_Num = data.getStringExtra("machine_Num_data");
+                    receive_data.setText(machine_Num);
+
+                }
+
+                break;
+
+            default:
+
+        }
+}
 
 
 }

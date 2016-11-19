@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#eae8e8">
 
     <com.example.gte.sms_demo_12.TkToolbar
         android:id="@+id/toolbar"
@@ -10,10 +12,121 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:rightButtonIcon="@mipmap/icon_back"
-        app:title="@string/menu_add">
+        app:title="添加">
 
 
     </com.example.gte.sms_demo_12.TkToolbar>
+
+    <ImageView
+        android:id="@+id/add_img_top"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="#82e3f4"/>
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:id="@+id/add_Machine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设备号："/>
+            <EditText
+                android:id="@+id/add_Machine_Num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入设备号"
+                android:textColor="#4b4b4b"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/add_Phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机号："/>
+            <EditText
+                android:id="@+id/add_Phone_Num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入手机号"
+                android:textColor="#4b4b4b"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/add_beizhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="备注名："/>
+            <EditText
+                android:id="@+id/add_beizhu_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入备注号"
+                android:textColor="#4b4b4b"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="完成"
+        android:textSize="20sp"
+        android:textColor="#ff0000" />
+
+
 
 </LinearLayout>
