@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
-    <include layout="@layout/tb_fragment"/>
-
-    <TextView
-        android:id="@+id/tv_number"
+    //Toolbar布局layout_height设置为wrap_content
+    <com.example.gte.sms_demo_12.TkToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+    </com.example.gte.sms_demo_12.TkToolbar>
+
+    <com.example.gte.sms_demo_12.mulu_list.left_word_style
+        android:id="@+id/left_word"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/toolbar"/>
 
 
-</LinearLayout>
+    <!--这个就用来显示我们当前按下的字母-->
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/center_letter_bg"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:textColor="#fff"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_below="@+id/tv"
+        android:layout_toLeftOf="@+id/left_word"
+        android:layout_toStartOf="@+id/left_word" />
+
+</RelativeLayout>

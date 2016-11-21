@@ -2,13 +2,13 @@ package com.example.gte.sms_demo_12;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,8 +24,6 @@ import com.example.gte.sms_demo_12.bean.Tab;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.security.AccessController.getContext;
-
 
 public class MainActivity extends FragmentActivity {
 
@@ -38,6 +36,10 @@ public class MainActivity extends FragmentActivity {
 
     private long firstPressTime = 0;
     private Toolbar toolbar;
+
+    public FragmentTransaction mFragmentTransaction;
+    public FragmentManager fragmentManager;
+    public String curFragmentTag = "secondFragment";
 
 
 
@@ -88,6 +90,14 @@ public class MainActivity extends FragmentActivity {
         text.setText(tab.getTitle());
 
         return view;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment f = fragmentManager.findFragmentByTag(curFragmentTag);
+        f.onActivityResult(requestCode, resultCode, data);
+
     }
 
     /*

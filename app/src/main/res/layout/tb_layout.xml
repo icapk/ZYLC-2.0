@@ -14,7 +14,6 @@
         android:visibility="gone"
         android:focusable="true"
         android:padding="5dp"
-
         android:drawableLeft="@mipmap/icon_search_sel"
         android:singleLine="true"
         android:duplicateParentState="true"

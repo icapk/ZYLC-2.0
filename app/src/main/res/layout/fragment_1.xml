@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    //Toolbar布局layout_height设置为wrap_content
     <include layout="@layout/tb_fragment"/>
 
     <TextView
         android:id="@+id/receive_data"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:background="#a45959"
+        android:text="hahahah"/>
 
 </LinearLayout>

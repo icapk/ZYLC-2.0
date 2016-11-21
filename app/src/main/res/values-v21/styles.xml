@@ -11,7 +11,7 @@
                 <!-- 各控件被勾选或者被选中的颜色 -->
                 <item name="colorAccent">@color/colorAccent</item>
 
-                <!-- 系统下方导航列（虚拟按键）的背景色，但只能用在 API Level 21 (Android 5) 以上的版本 -->
+                <!-- 系统下方导航列（虚拟按键）的背景色，但只能用在 API Level 21 (Android 5.0) 以上的版本 -->
                 <item name="android:navigationBarColor">@color/colorPrimary</item>
 
                 <!-- 设置无ActionBAr -->

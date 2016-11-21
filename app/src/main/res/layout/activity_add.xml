@@ -6,17 +6,26 @@
     android:orientation="vertical"
     android:background="#eae8e8">
 
-    <com.example.gte.sms_demo_12.TkToolbar
-        android:id="@+id/toolbar"
+    <!-- 使用普通Toolbar -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/add_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:title="添加">
+        android:background="?attr/colorPrimary">
 
+        <!-- 居中显示title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:text="添加"/>
 
-    </com.example.gte.sms_demo_12.TkToolbar>
+    </android.support.v7.widget.Toolbar>
 
+   
     <ImageView
         android:id="@+id/add_img_top"
         android:layout_width="match_parent"
@@ -119,13 +128,15 @@
         android:id="@+id/add_finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/corners_bg"
+        android:background="#ff0000"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="完成"
         android:textSize="20sp"
-        android:textColor="#ff0000" />
+        android:textColor="#ffffff"
+        android:layout_marginBottom="10dp"
+       />
 
 
 

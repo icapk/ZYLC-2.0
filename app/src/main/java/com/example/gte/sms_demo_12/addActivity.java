@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 public class addActivity extends Activity {
 
-    Toolbar toolbar;
+
     private Button add_finish;
     private EditText add_machine_num;
     private EditText add_phone_num;
@@ -24,6 +24,7 @@ public class addActivity extends Activity {
     private String machine_num;
     private String phone_num;
     private String beizhu_name;
+    private Toolbar add_toolbar;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class addActivity extends Activity {
 
         setContentView(R.layout.activity_add);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        add_toolbar = (Toolbar) findViewById(R.id.add_toolbar);
 
         init();
 
@@ -39,8 +40,8 @@ public class addActivity extends Activity {
 
     private void init() {
 
-        toolbar.setNavigationIcon(R.mipmap.icon_back);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        add_toolbar.setNavigationIcon(R.mipmap.icon_back);
+        add_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             finish();
@@ -54,7 +55,6 @@ public class addActivity extends Activity {
         phone_num = add_phone_num.getText().toString();
         beizhu_name =add_beizhu_name.getText().toString();
 
-
         //实现完成按钮的点击事件，并返回数据给上一级的fragment_2
         add_finish = (Button) findViewById(R.id.add_finish);
         add_finish.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,6 @@ public class addActivity extends Activity {
                 intent.putExtra("beizhu_Name_data",beizhu_name);
 
                 setResult(RESULT_OK, intent);
-
                 finish();
             }
         });
