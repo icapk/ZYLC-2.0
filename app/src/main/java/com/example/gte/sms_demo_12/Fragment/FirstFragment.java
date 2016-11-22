@@ -17,7 +17,7 @@ import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.SearchActivity;
 import com.example.gte.sms_demo_12.addActivity;
 
-import com.example.gte.sms_demo_12.Utils;
+
 
 import static android.app.Activity.RESULT_OK;
 
