@@ -12,57 +12,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:text="控制界面"
+            android:text="时间"
             android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
+
     <TextView
-        android:background="@drawable/corners_bg"
+        android:background="@drawable/corners_bg_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="目标手机号"
         android:textSize="20sp"
-       android:layout_weight="1"
-        android:gravity="center"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:orientation="horizontal"
-    android:gravity="center">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center">
-
-        <Button
-            android:background="@drawable/center_letter_bg"
-            android:layout_gravity="center"
-            android:text="时间"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/button"
-             />
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center">
-
-            <Button
-                android:background="@drawable/center_letter_bg"
-                android:layout_gravity="center"
-                android:text="状态"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:id="@+id/button2"
-                />
-        </LinearLayout>
-
-
-</LinearLayout>
+        android:layout_margin="20dp"
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,36 +34,51 @@
         android:gravity="center">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center">
 
             <Button
                 android:background="@drawable/center_letter_bg"
                 android:layout_gravity="center"
-                android:text="定值"
+                android:text="查询时间"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:id="@+id/button3"
+                android:id="@+id/button"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+            <Button
+                android:background="@drawable/center_letter_bg"
+                android:layout_gravity="center"
+                android:text="发送当前时间"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/button2"
                 />
         </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <Button
-            android:background="@drawable/center_letter_bg"
-            android:layout_gravity="center"
-            android:text="定值定义"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/button4"
-            android:layout_margin="20dp"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:hint="时间"
+            android:background="@drawable/corners_bg_tv"/>
 
     </LinearLayout>
 
