@@ -92,13 +92,7 @@ public class MainActivity extends FragmentActivity {
         return view;
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
 
-        super.onActivityResult(requestCode, resultCode, data);
-        Fragment f = fragmentManager.findFragmentByTag(curFragmentTag);
-        f.onActivityResult(requestCode, resultCode, data);
-
-    }
 
     /*
      *双击返回键退出应用

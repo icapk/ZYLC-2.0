@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    //显示字母
     <TextView
         android:id="@+id/tv_word"
         android:layout_width="match_parent"
@@ -12,11 +13,13 @@
         android:gravity="center_vertical"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft" />
 
+    //显示汉字
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:textColor="#dc6f6f"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"

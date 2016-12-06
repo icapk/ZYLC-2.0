@@ -9,7 +9,6 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 /**
  * Created by GTE on 2016/11/21.
  */
@@ -29,7 +28,7 @@ public class left_word_style extends View{
     /*每一个字母的高度*/
     private int itemHeight;
     /*手指按下的字母索引*/
-    private int touchIndex = 0;
+    private int touchIndex = 0 ;
     /*手指按下的字母改变接口*/
     private onWordsChangeListener listener;
 

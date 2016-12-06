@@ -3,7 +3,6 @@ package com.example.gte.sms_demo_12.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,13 +38,16 @@ public class SecondFragment extends Fragment implements
     private Toolbar toolbar;
     Intent intent_search;
     Intent intent_add;
-    private TextView tv_number ;
     private TextView tv;
     private left_word_style left_word;
     private Handler handler;
     private ListView listView;
     private List<Person> list;
-    private left_word_style word;
+    left_word_style word;
+
+     public String mMachine_Num;
+
+
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,8 +110,14 @@ public class SecondFragment extends Fragment implements
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);  //这个super可不能落下，否则可能回调不了
         if(resultCode == 0){  //判断返回码是否是0
-            //String mNumber =data.getStringExtra("machine_Num_data").toString();
-           //tv_number.setText(mNumber);
+
+                mMachine_Num =data.getStringExtra("machine_Num_data").toString();
+                String mPhone_Num =data.getStringExtra("phone_Num_data").toString();
+                String mBeiZhu =data.getStringExtra("beizhu_Name_data").toString();
+
+
+
+
         }
 
     }
@@ -119,6 +126,8 @@ public class SecondFragment extends Fragment implements
         list_adapter adapter = new list_adapter(this, list);
         listView.setAdapter(adapter);
         listView.setOnScrollListener(this);
+
+
     }
 
     /**
@@ -126,7 +135,7 @@ public class SecondFragment extends Fragment implements
      */
     private void initData() {
         list = new ArrayList<>();
-        list.add(new Person("Dave"));
+        list.add(new Person(mMachine_Num));
         list.add(new Person("张晓飞"));
         list.add(new Person("杨光福"));
         list.add(new Person("阿钟"));
@@ -183,7 +192,7 @@ public class SecondFragment extends Fragment implements
 
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         //当滑动列表的时候，更新右侧字母列表的选中状态
-        word.setTouchIndex(list.get(firstVisibleItem).getHeaderWord());
+        //word.setTouchIndex(list.get(firstVisibleItem).getHeaderWord());
     }
 
     /**
@@ -221,8 +230,5 @@ public class SecondFragment extends Fragment implements
             }
         }, 500);
     }
-
-
-
 
 }

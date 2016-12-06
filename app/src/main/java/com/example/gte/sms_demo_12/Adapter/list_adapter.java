@@ -1,6 +1,5 @@
 package com.example.gte.sms_demo_12.Adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,8 @@ public class list_adapter extends BaseAdapter {
 
     private List<Person> list;
     private LayoutInflater inflater;
+
+
 
     public list_adapter(SecondFragment context, List<Person> list) {
         inflater = LayoutInflater.from(context.getActivity());
@@ -56,7 +57,8 @@ public class list_adapter extends BaseAdapter {
         }
         String word = list.get(position).getHeaderWord();
         holder.tv_word.setText(word);
-        holder.tv_name.setText(list.get(position).getName());
+         holder.tv_name.setText(list.get(position).getName());
+
         //将相同字母开头的合并在一起
         if (position == 0) {
             //第一个是一定显示的
@@ -73,7 +75,7 @@ public class list_adapter extends BaseAdapter {
         return convertView;
     }
 
-    private class ViewHolder {
+    public class ViewHolder {
         private TextView tv_word;
         private TextView tv_name;
     }

@@ -20,6 +20,14 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/toolbar"/>
 
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_below="@+id/toolbar"
+        android:layout_toLeftOf="@+id/left_word"
+        android:layout_toStartOf="@+id/left_word" />
 
     <!--这个就用来显示我们当前按下的字母-->
     <TextView
@@ -31,16 +39,9 @@
         android:background="@drawable/center_letter_bg"
         android:gravity="center"
         android:textSize="40sp"
-        android:textColor="#fff"
+        android:textColor="#ffffff"
         android:visibility="gone" />
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:layout_below="@+id/tv"
-        android:layout_toLeftOf="@+id/left_word"
-        android:layout_toStartOf="@+id/left_word" />
+
 
 </RelativeLayout>
