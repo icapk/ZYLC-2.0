@@ -2,11 +2,13 @@ package com.example.gte.sms_demo_12;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by GTE on 2016/11/17.
@@ -14,7 +16,9 @@ import android.widget.EditText;
 
 public class addActivity extends Activity {
 
-
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+    public String KEY = "num";
     private Button add_finish;
     private EditText add_machine_num;
     private EditText add_phone_num;
@@ -32,6 +36,9 @@ public class addActivity extends Activity {
 
         setContentView(R.layout.activity_add);
 
+        preferences = getPreferences(Activity.MODE_PRIVATE);
+        editor = preferences.edit();
+
         add_toolbar = (Toolbar) findViewById(R.id.add_toolbar);
 
         init();
@@ -39,6 +46,8 @@ public class addActivity extends Activity {
     }
 
     private void init() {
+
+
 
         add_toolbar.setNavigationIcon(R.mipmap.icon_back);
         add_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -60,12 +69,12 @@ public class addActivity extends Activity {
         add_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra("machine_Num_data",machine_num);
-                intent.putExtra("phone_Num_data",phone_num);
-                intent.putExtra("beizhu_Name_data",beizhu_name);
 
-                setResult(RESULT_OK, intent);
+                editor.putString(KEY,add_machine_num.getText().toString());
+                editor.commit();
+
+                String in = preferences.getString(KEY,"什么");
+                Toast.makeText(getApplicationContext(),in,Toast.LENGTH_LONG).show();
                 finish();
             }
         });

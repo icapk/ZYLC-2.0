@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contact>
+
+    <list id = "0">
+        <mNumber> + 添加联系人 </mNumber>
+        <pNumber> </pNumber>
+        <mBeiZhu> </mBeiZhu>
+    </list>
+
+</contact>

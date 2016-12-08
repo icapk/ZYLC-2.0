@@ -1,6 +1,7 @@
 package com.example.gte.sms_demo_12.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import com.example.gte.sms_demo_12.addActivity;
 import com.example.gte.sms_demo_12.mulu_list.Person;
 import com.example.gte.sms_demo_12.mulu_list.left_word_style;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -50,6 +52,7 @@ public class SecondFragment extends Fragment implements
 
 
 
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -75,6 +78,8 @@ public class SecondFragment extends Fragment implements
 
         return view;
     }
+
+
 
     private void init() {
 
@@ -105,15 +110,27 @@ public class SecondFragment extends Fragment implements
                 return true;
             }
         });
+        
+        initcontact();
 
     }
+
+    
+
+    /**
+     * 初始化listview内容
+     * 初始化联系人列表
+     */
+
+    public void initcontact(){
+
+    }
+    
+    
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);  //这个super可不能落下，否则可能回调不了
         if(resultCode == 0){  //判断返回码是否是0
 
-                mMachine_Num =data.getStringExtra("machine_Num_data").toString();
-                String mPhone_Num =data.getStringExtra("phone_Num_data").toString();
-                String mBeiZhu =data.getStringExtra("beizhu_Name_data").toString();
 
 
 
@@ -134,9 +151,9 @@ public class SecondFragment extends Fragment implements
      * 初始化联系人列表信息
      */
     private void initData() {
+
         list = new ArrayList<>();
-        list.add(new Person(mMachine_Num));
-        list.add(new Person("张晓飞"));
+
         list.add(new Person("杨光福"));
         list.add(new Person("阿钟"));
         list.add(new Person("胡继群"));

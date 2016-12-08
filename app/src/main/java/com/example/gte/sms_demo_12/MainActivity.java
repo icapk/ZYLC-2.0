@@ -21,8 +21,16 @@ import com.example.gte.sms_demo_12.Fragment.SecondFragment;
 import com.example.gte.sms_demo_12.Fragment.ThirdFragment;
 import com.example.gte.sms_demo_12.bean.Tab;
 
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 
 public class MainActivity extends FragmentActivity {
@@ -42,8 +50,6 @@ public class MainActivity extends FragmentActivity {
     public String curFragmentTag = "secondFragment";
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +57,13 @@ public class MainActivity extends FragmentActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         initTab();
-
+        initcontactdata();
 
     }
 
-
-
+    /**
+     * 初始化MainActivity下方的三个TabHost
+     */
 
     private void initTab() {
         Tab recording = new Tab(R.string.recording, R.drawable.selecter_recording, FirstFragment.class);
@@ -90,6 +97,33 @@ public class MainActivity extends FragmentActivity {
         text.setText(tab.getTitle());
 
         return view;
+    }
+
+    /**
+     * 初始化联系人数据
+     * 更新联系人listview
+     */
+
+    public void initcontactdata(){
+        try {
+
+
+
+            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+            //获取DocumentBuilder对象，用builder接收
+            DocumentBuilder builder = builderFactory.newDocumentBuilder();
+            //引入org.w3c.dom包中的Document,利用parse将数据源转换成Document对象
+            Document document = builder.parse(getAssets().open("contact_data.xml"));
+            //获取当前文档的根元素
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
     }
 
 
