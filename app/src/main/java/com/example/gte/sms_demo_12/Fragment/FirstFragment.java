@@ -13,11 +13,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gte.sms_demo_12.NameService;
 import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.SearchActivity;
 import com.example.gte.sms_demo_12.addActivity;
+import com.example.gte.sms_demo_12.domain.Name;
+import com.example.gte.sms_demo_12.mulu_list.Person;
 
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -35,6 +41,7 @@ public class FirstFragment extends Fragment {
     private Intent intent_search;
     private Intent intent_add;
     private TextView receive_data;
+    private List<Person> list;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,6 +51,13 @@ public class FirstFragment extends Fragment {
         toolbar.setTitle("记录");
 
         receive_data = (TextView) view.findViewById(R.id.receive_data);
+
+        try {
+            initdata();
+            receive_data.setText("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         toolbar.setNavigationIcon(R.mipmap.icon_add);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -74,7 +88,16 @@ public class FirstFragment extends Fragment {
         return view;
     }
 
+public void initdata() throws Exception{
 
+    list = new ArrayList<>();
+    InputStream xml = this.getClass().getClassLoader().getResourceAsStream("data.xml");
+    List<Name> names = NameService.getNames(xml);
+    for ( Name name: names){
+        String Name = name.toString();
+        list.add(new Person(Name) );
+    }
+}
 
     //用于接收Intent返回的结果
 public void onActivityResult(int requestCode, int resultCode, Intent data) {

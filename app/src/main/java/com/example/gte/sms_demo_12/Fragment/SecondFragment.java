@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,17 +16,29 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.gte.sms_demo_12.Adapter.list_adapter;
+import com.example.gte.sms_demo_12.NameService;
 import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.SearchActivity;
 import com.example.gte.sms_demo_12.addActivity;
+import com.example.gte.sms_demo_12.domain.Name;
 import com.example.gte.sms_demo_12.mulu_list.Person;
 import com.example.gte.sms_demo_12.mulu_list.left_word_style;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.InputStream;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 
 /**
@@ -45,9 +58,6 @@ public class SecondFragment extends Fragment implements
     private Handler handler;
     private ListView listView;
     private List<Person> list;
-    left_word_style word;
-
-     public String mMachine_Num;
 
 
 
@@ -71,6 +81,14 @@ public class SecondFragment extends Fragment implements
         initData();
         //初始化列表
         initListView();
+
+
+        try {
+            initcontact();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         //设置列表点击滑动监听
         handler = new Handler();
@@ -111,7 +129,7 @@ public class SecondFragment extends Fragment implements
             }
         });
         
-        initcontact();
+
 
     }
 
@@ -122,8 +140,23 @@ public class SecondFragment extends Fragment implements
      * 初始化联系人列表
      */
 
-    public void initcontact(){
+    public void initcontact() throws Exception {
+        list = new ArrayList<>();
+        InputStream xml = this.getClass().getClassLoader().getResourceAsStream("data.xml");
+        List<Name> names = NameService.getNames(xml);
+        for ( Name name: names){
+            String Name = name.toString();
+            list.add(new Person(Name) );
 
+        }
+        list.add(new Person("阿钟"));
+        Collections.sort(list, new Comparator<Person>() {
+            @Override
+            public int compare(Person lhs, Person rhs) {
+                //根据拼音进行排序
+                return lhs.getPinyin().compareTo(rhs.getPinyin());
+            }
+        });
     }
     
     
@@ -131,12 +164,7 @@ public class SecondFragment extends Fragment implements
         super.onActivityResult(requestCode, resultCode, data);  //这个super可不能落下，否则可能回调不了
         if(resultCode == 0){  //判断返回码是否是0
 
-
-
-
-
         }
-
     }
 
     private void initListView() {
@@ -154,44 +182,52 @@ public class SecondFragment extends Fragment implements
 
         list = new ArrayList<>();
 
-        list.add(new Person("杨光福"));
-        list.add(new Person("阿钟"));
-        list.add(new Person("胡继群"));
-        list.add(new Person("徐歌阳"));
-        list.add(new Person("钟泽兴"));
-        list.add(new Person("宋某人"));
-        list.add(new Person("刘某人"));
-        list.add(new Person("Tony"));
-        list.add(new Person("老刘"));
-        list.add(new Person("隔壁老王"));
-        list.add(new Person("安传鑫"));
-        list.add(new Person("温松"));
-        list.add(new Person("成龙"));
-        list.add(new Person("那英"));
-        list.add(new Person("刘甫"));
-        list.add(new Person("沙宝亮"));
-        list.add(new Person("张猛"));
-        list.add(new Person("张大爷"));
-        list.add(new Person("张哥"));
-        list.add(new Person("张娃子"));
-        list.add(new Person("樟脑丸"));
-        list.add(new Person("吴亮"));
-        list.add(new Person("Tom"));
-        list.add(new Person("阿三"));
-        list.add(new Person("肖奈"));
-        list.add(new Person("贝微微"));
-        list.add(new Person("赵二喜"));
-        list.add(new Person("曹光"));
-        list.add(new Person("姜宇航"));
+
+
+//
+//        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+//        //获取DocumentBuilder对象，用builder接收
+//        DocumentBuilder builder = builderFactory.newDocumentBuilder();
+//        //引入org.w3c.dom包中的Document,利用parse将数据源转换成Document对象
+//        Document document = builder.parse(getAssets().open("contact_data.xml"));
+//        //获取当前文档的根元素
+//        Element element = document.getDocumentElement();
+//        //获取根元素上对象的数值
+//        NodeList list = element.getElementsByTagName("mNumber");
+
+        //list.add(new Person());
+
+
+//        list.add(new Person("胡继群"));
+//        list.add(new Person("徐歌阳"));
+//        list.add(new Person("钟泽兴"));
+//        list.add(new Person("宋某人"));
+//        list.add(new Person("刘某人"));
+//        list.add(new Person("Tony"));
+//        list.add(new Person("老刘"));
+//        list.add(new Person("隔壁老王"));
+//        list.add(new Person("安传鑫"));
+//        list.add(new Person("温松"));
+//        list.add(new Person("成龙"));
+//        list.add(new Person("那英"));
+//        list.add(new Person("刘甫"));
+//        list.add(new Person("沙宝亮"));
+//        list.add(new Person("张猛"));
+//        list.add(new Person("张大爷"));
+//        list.add(new Person("张哥"));
+//        list.add(new Person("张娃子"));
+//        list.add(new Person("樟脑丸"));
+//        list.add(new Person("吴亮"));
+//        list.add(new Person("Tom"));
+//        list.add(new Person("阿三"));
+//        list.add(new Person("肖奈"));
+//        list.add(new Person("贝微微"));
+//        list.add(new Person("赵二喜"));
+//        list.add(new Person("曹光"));
+//        list.add(new Person("姜宇航"));
 
         //对集合排序
-        Collections.sort(list, new Comparator<Person>() {
-            @Override
-            public int compare(Person lhs, Person rhs) {
-                //根据拼音进行排序
-                return lhs.getPinyin().compareTo(rhs.getPinyin());
-            }
-        });
+
     }
 
     //手指按下字母改变监听回调

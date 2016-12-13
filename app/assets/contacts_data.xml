@@ -3,8 +3,8 @@
 
     <list id = "0">
         <mNumber> + 添加联系人 </mNumber>
-        <pNumber> </pNumber>
-        <mBeiZhu> </mBeiZhu>
+        <pNumber> 10086 </pNumber>
+        <mBeiZhu> 客服 </mBeiZhu>
     </list>
 
 </contact>

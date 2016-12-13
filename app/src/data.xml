@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contact>
+
+    <list id = "0">
+        <mNumber> + 添加联系人 </mNumber>
+        <pNumber> 10086 </pNumber>
+        <mBeiZhu> 客服0 </mBeiZhu>
+    </list>
+
+    <list id = "1">
+        <mNumber> +添加联系人 </mNumber>
+        <pNumber> 1008611 </pNumber>
+        <mBeiZhu> 客服1 </mBeiZhu>
+    </list>
+
+</contact>
