@@ -1,12 +1,10 @@
 package com.example.gte.sms_demo_12.Fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,21 +22,11 @@ import com.example.gte.sms_demo_12.domain.Name;
 import com.example.gte.sms_demo_12.mulu_list.Person;
 import com.example.gte.sms_demo_12.mulu_list.left_word_style;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.io.InputStream;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 
 /**
@@ -83,11 +71,11 @@ public class SecondFragment extends Fragment implements
         initListView();
 
 
-        try {
-            initcontact();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            initcontact();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 
         //设置列表点击滑动监听
@@ -128,44 +116,31 @@ public class SecondFragment extends Fragment implements
                 return true;
             }
         });
-        
+
 
 
     }
 
-    
+
 
     /**
      * 初始化listview内容
      * 初始化联系人列表
      */
 
-    public void initcontact() throws Exception {
+    public void initcontact()  {
         list = new ArrayList<>();
         InputStream xml = this.getClass().getClassLoader().getResourceAsStream("data.xml");
         List<Name> names = NameService.getNames(xml);
         for ( Name name: names){
-            String Name = name.toString();
-            list.add(new Person(Name) );
+            String Name = name.getmNumber().toString();
+            list.add(new Person(Name));
 
         }
-        list.add(new Person("阿钟"));
-        Collections.sort(list, new Comparator<Person>() {
-            @Override
-            public int compare(Person lhs, Person rhs) {
-                //根据拼音进行排序
-                return lhs.getPinyin().compareTo(rhs.getPinyin());
-            }
-        });
-    }
-    
-    
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);  //这个super可不能落下，否则可能回调不了
-        if(resultCode == 0){  //判断返回码是否是0
+//        list.add(new Person("阿钟"));
 
-        }
     }
+
 
     private void initListView() {
         list_adapter adapter = new list_adapter(this, list);
@@ -182,6 +157,7 @@ public class SecondFragment extends Fragment implements
 
         list = new ArrayList<>();
 
+            initcontact();
 
 
 //
@@ -197,7 +173,7 @@ public class SecondFragment extends Fragment implements
 
         //list.add(new Person());
 
-
+//
 //        list.add(new Person("胡继群"));
 //        list.add(new Person("徐歌阳"));
 //        list.add(new Person("钟泽兴"));
@@ -227,7 +203,13 @@ public class SecondFragment extends Fragment implements
 //        list.add(new Person("姜宇航"));
 
         //对集合排序
-
+        Collections.sort(list, new Comparator<Person>() {
+            @Override
+            public int compare(Person lhs, Person rhs) {
+                //根据拼音进行排序
+                return lhs.getPinyin().compareTo(rhs.getPinyin());
+            }
+        });
     }
 
     //手指按下字母改变监听回调

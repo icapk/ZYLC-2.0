@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +43,8 @@ public class FirstFragment extends Fragment {
     private Intent intent_add;
     private TextView receive_data;
     private List<Person> list;
+    private String Name;
+    private static final String TAG = "Nametest";
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,10 +57,11 @@ public class FirstFragment extends Fragment {
 
         try {
             initdata();
-            receive_data.setText("");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        receive_data.setText(Name);
+
 
         toolbar.setNavigationIcon(R.mipmap.icon_add);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -94,8 +98,7 @@ public void initdata() throws Exception{
     InputStream xml = this.getClass().getClassLoader().getResourceAsStream("data.xml");
     List<Name> names = NameService.getNames(xml);
     for ( Name name: names){
-        String Name = name.toString();
-        list.add(new Person(Name) );
+       Name = name.getmNumber().toString();
     }
 }
 

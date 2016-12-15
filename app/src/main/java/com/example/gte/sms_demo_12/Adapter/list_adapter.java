@@ -18,7 +18,7 @@ import java.util.List;
 
 public class list_adapter extends BaseAdapter {
 
-    private List<Person> list;
+    private List<Person> list = null;
     private LayoutInflater inflater;
 
 
