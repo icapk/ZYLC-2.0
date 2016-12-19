@@ -22,6 +22,7 @@ import com.example.gte.sms_demo_12.domain.Name;
 import com.example.gte.sms_demo_12.mulu_list.Person;
 import com.example.gte.sms_demo_12.mulu_list.left_word_style;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -137,6 +138,11 @@ public class SecondFragment extends Fragment implements
             list.add(new Person(Name));
 
         }
+        try {
+            xml.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        list.add(new Person("阿钟"));
 
     }
@@ -158,20 +164,6 @@ public class SecondFragment extends Fragment implements
         list = new ArrayList<>();
 
             initcontact();
-
-
-//
-//        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-//        //获取DocumentBuilder对象，用builder接收
-//        DocumentBuilder builder = builderFactory.newDocumentBuilder();
-//        //引入org.w3c.dom包中的Document,利用parse将数据源转换成Document对象
-//        Document document = builder.parse(getAssets().open("contact_data.xml"));
-//        //获取当前文档的根元素
-//        Element element = document.getDocumentElement();
-//        //获取根元素上对象的数值
-//        NodeList list = element.getElementsByTagName("mNumber");
-
-        //list.add(new Person());
 
 //
 //        list.add(new Person("胡继群"));
