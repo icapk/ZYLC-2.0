@@ -55,11 +55,7 @@ public class FirstFragment extends Fragment {
 
         receive_data = (TextView) view.findViewById(R.id.receive_data);
 
-        try {
-            initdata();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         receive_data.setText(Name);
 
 
@@ -92,15 +88,7 @@ public class FirstFragment extends Fragment {
         return view;
     }
 
-public void initdata() throws Exception{
 
-    list = new ArrayList<>();
-    InputStream xml = this.getClass().getClassLoader().getResourceAsStream("data.xml");
-    List<Name> names = NameService.getNames(xml);
-    for ( Name name: names){
-       Name = name.getmNumber().toString();
-    }
-}
 
     //用于接收Intent返回的结果
 public void onActivityResult(int requestCode, int resultCode, Intent data) {

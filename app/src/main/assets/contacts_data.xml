@@ -6,5 +6,10 @@
         <pNumber> 10086 </pNumber>
         <mBeiZhu> 客服 </mBeiZhu>
     </list>
+    <list id = "1">
+        <mNumber> - 添加联系人 </mNumber>
+        <pNumber> 10086 </pNumber>
+        <mBeiZhu> 客服 </mBeiZhu>
+    </list>
 
 </contact>

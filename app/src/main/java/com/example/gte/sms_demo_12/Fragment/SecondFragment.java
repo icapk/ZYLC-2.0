@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,12 +23,21 @@ import com.example.gte.sms_demo_12.domain.Name;
 import com.example.gte.sms_demo_12.mulu_list.Person;
 import com.example.gte.sms_demo_12.mulu_list.left_word_style;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 
 /**
@@ -48,7 +58,8 @@ public class SecondFragment extends Fragment implements
     private ListView listView;
     private List<Person> list;
 
-
+    private String m;
+    private String n;
 
 
 
@@ -124,30 +135,6 @@ public class SecondFragment extends Fragment implements
 
 
 
-    /**
-     * 初始化listview内容
-     * 初始化联系人列表
-     */
-
-    public void initcontact()  {
-        list = new ArrayList<>();
-        InputStream xml = this.getClass().getClassLoader().getResourceAsStream("data.xml");
-        List<Name> names = NameService.getNames(xml);
-        for ( Name name: names){
-            String Name = name.getmNumber().toString();
-            list.add(new Person(Name));
-
-        }
-        try {
-            xml.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        list.add(new Person("阿钟"));
-
-    }
-
-
     private void initListView() {
         list_adapter adapter = new list_adapter(this, list);
         listView.setAdapter(adapter);
@@ -163,36 +150,30 @@ public class SecondFragment extends Fragment implements
 
         list = new ArrayList<>();
 
-            initcontact();
+        try {
+            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = builderFactory.newDocumentBuilder();
+            Document document = builder.parse(getResources().getAssets().open("contacts_data.xml"));
+            Element element = document.getDocumentElement();
+            NodeList lists = element.getElementsByTagName("list");
+            for (int i = 0; i < lists.getLength(); i++) {
+                Element ele = (Element) lists.item(i);
 
-//
-//        list.add(new Person("胡继群"));
-//        list.add(new Person("徐歌阳"));
-//        list.add(new Person("钟泽兴"));
-//        list.add(new Person("宋某人"));
-//        list.add(new Person("刘某人"));
-//        list.add(new Person("Tony"));
-//        list.add(new Person("老刘"));
-//        list.add(new Person("隔壁老王"));
-//        list.add(new Person("安传鑫"));
-//        list.add(new Person("温松"));
-//        list.add(new Person("成龙"));
-//        list.add(new Person("那英"));
-//        list.add(new Person("刘甫"));
-//        list.add(new Person("沙宝亮"));
-//        list.add(new Person("张猛"));
-//        list.add(new Person("张大爷"));
-//        list.add(new Person("张哥"));
-//        list.add(new Person("张娃子"));
-//        list.add(new Person("樟脑丸"));
-//        list.add(new Person("吴亮"));
-//        list.add(new Person("Tom"));
-//        list.add(new Person("阿三"));
-//        list.add(new Person("肖奈"));
-//        list.add(new Person("贝微微"));
-//        list.add(new Person("赵二喜"));
-//        list.add(new Person("曹光"));
-//        list.add(new Person("姜宇航"));
+                m = ele.getElementsByTagName("mNumber").item(0).getTextContent();
+                n = ele.getElementsByTagName("pNumber").item(0).getTextContent().toString();
+
+                list.add(new Person(m));
+            }
+
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         //对集合排序
         Collections.sort(list, new Comparator<Person>() {
