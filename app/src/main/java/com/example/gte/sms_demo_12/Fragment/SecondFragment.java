@@ -10,15 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gte.sms_demo_12.Adapter.list_adapter;
-import com.example.gte.sms_demo_12.NameService;
+import com.example.gte.sms_demo_12.Control_Interface_Activity.Control_MainActivity;
 import com.example.gte.sms_demo_12.R;
-import com.example.gte.sms_demo_12.SearchActivity;
-import com.example.gte.sms_demo_12.addActivity;
+import com.example.gte.sms_demo_12.Activity.SearchActivity;
+import com.example.gte.sms_demo_12.Activity.addActivity;
 import com.example.gte.sms_demo_12.domain.Name;
 import com.example.gte.sms_demo_12.mulu_list.Person;
 import com.example.gte.sms_demo_12.mulu_list.left_word_style;
@@ -29,7 +30,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -57,9 +57,11 @@ public class SecondFragment extends Fragment implements
     private Handler handler;
     private ListView listView;
     private List<Person> list;
-
+    private List<Name> nlist;
     private String m;
     private String n;
+    public String b;
+
 
 
 
@@ -81,13 +83,6 @@ public class SecondFragment extends Fragment implements
         initData();
         //初始化列表
         initListView();
-
-
-//        try {
-//            initcontact();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
 
         //设置列表点击滑动监听
@@ -137,9 +132,26 @@ public class SecondFragment extends Fragment implements
 
     private void initListView() {
         list_adapter adapter = new list_adapter(this, list);
+
         listView.setAdapter(adapter);
         listView.setOnScrollListener(this);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Person name = list.get(position);
+//Name name = list.get(position);
 
+                Intent intent = new Intent(getActivity(), Control_MainActivity.class);
+                String Name = name.getName();
+                String pNum = name.getpNumber();
+                String mBei = name.getmBeiZhu();
+                intent.putExtra("Name",Name);
+                intent.putExtra("pNum",pNum);
+                intent.putExtra("mBei",mBei);
+                startActivity(intent);
+                Toast.makeText(getActivity(),name.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -159,10 +171,14 @@ public class SecondFragment extends Fragment implements
             for (int i = 0; i < lists.getLength(); i++) {
                 Element ele = (Element) lists.item(i);
 
-                m = ele.getElementsByTagName("mNumber").item(0).getTextContent();
-                n = ele.getElementsByTagName("pNumber").item(0).getTextContent().toString();
+                 m= ele.getElementsByTagName("name").item(0).getTextContent().toString();
+                 n = ele.getElementsByTagName("pNumber").item(0).getTextContent().toString();
+                 b = ele.getElementsByTagName("mBeiZhu").item(0).getTextContent().toString();
+                new  Person(m,n,b).setName(m);
 
-                list.add(new Person(m));
+
+                list.add(new Person(m,n,b));
+
             }
 
 
@@ -219,6 +235,17 @@ public class SecondFragment extends Fragment implements
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        initData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
 
     /**
      * 更新中央的字母提示

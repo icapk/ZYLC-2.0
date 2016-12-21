@@ -2,12 +2,17 @@
 <contact>
 
     <list id = "0">
-        <mNumber> + 添加联系人 </mNumber>
+        <name> 添加联系人 + </name>
         <pNumber> 10086 </pNumber>
-        <mBeiZhu> 客服 </mBeiZhu>
+        <mBeiZhu> 添加... </mBeiZhu>
     </list>
     <list id = "1">
-        <mNumber> - 添加联系人 </mNumber>
+        <name> 添加联系人 - </name>
+        <pNumber> 10086 </pNumber>
+        <mBeiZhu> 添加... </mBeiZhu>
+    </list>
+    <list id = "2">
+        <name> 获取验证码 </name>
         <pNumber> 10086 </pNumber>
         <mBeiZhu> 客服 </mBeiZhu>
     </list>

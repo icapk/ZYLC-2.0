@@ -1,4 +1,4 @@
-package com.example.gte.sms_demo_12;
+package com.example.gte.sms_demo_12.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gte.sms_demo_12.R;
+
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -79,11 +82,8 @@ public class addActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                editor.putString(KEY,add_machine_num.getText().toString());
-                editor.commit();
-
-                String in = preferences.getString(KEY,"什么");
-                Toast.makeText(getApplicationContext(),in,Toast.LENGTH_LONG).show();
+                saveData();
+//                Toast.makeText(getApplicationContext(),in,Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -94,7 +94,21 @@ public class addActivity extends Activity {
          DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
          DocumentBuilder  builder = builderFactory.newDocumentBuilder();
          Document document = builder.parse(getResources().getAssets().open("contacts_data.xml"));
-         document.createElement("list");
+            Element content = document.getDocumentElement();
+
+         Element mList = document.createElement("list");
+
+         Element mName = document.createElement("name");
+            mName.setTextContent(machine_num);
+         Element pNumber = document.createElement("pNumber");
+            pNumber.setTextContent(phone_num);
+         Element mBeiZhu = document.createElement("mBeiZhu");
+            mBeiZhu.setTextContent(beizhu_name);
+
+         mList.appendChild(mName);
+         mList.appendChild(pNumber);
+         mList.appendChild(mBeiZhu);
+        content.appendChild(mList);
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();

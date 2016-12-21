@@ -1,4 +1,4 @@
-package com.example.gte.sms_demo_12;
+package com.example.gte.sms_demo_12.Activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.gte.sms_demo_12.Fragment.FirstFragment;
 import com.example.gte.sms_demo_12.Fragment.SecondFragment;
 import com.example.gte.sms_demo_12.Fragment.ThirdFragment;
+import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.bean.Tab;
 
 import java.util.ArrayList;

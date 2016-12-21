@@ -1,9 +1,11 @@
-package com.example.gte.sms_demo_12;
+package com.example.gte.sms_demo_12.Activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.example.gte.sms_demo_12.R;
 
 /**
  * Created by GTE on 2016/11/16.
