@@ -1,6 +1,8 @@
 package com.example.gte.sms_demo_12.Fragment;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -15,29 +17,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gte.sms_demo_12.Adapter.list_adapter;
-import com.example.gte.sms_demo_12.Control_Interface_Activity.Control_MainActivity;
-import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.Activity.SearchActivity;
 import com.example.gte.sms_demo_12.Activity.addActivity;
+import com.example.gte.sms_demo_12.Adapter.list_adapter;
+import com.example.gte.sms_demo_12.Control_Interface_Activity.Control_MainActivity;
+import com.example.gte.sms_demo_12.DataBase.MyDataBaseHelper;
+import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.domain.Name;
 import com.example.gte.sms_demo_12.mulu_list.Person;
 import com.example.gte.sms_demo_12.mulu_list.left_word_style;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import static android.R.attr.name;
+import static android.content.Intent.getIntent;
 
 
 /**
@@ -62,7 +58,8 @@ public class SecondFragment extends Fragment implements
     private String n;
     public String b;
 
-
+    private MyDataBaseHelper dbHelper;
+    private SQLiteDatabase dx;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,7 +75,8 @@ public class SecondFragment extends Fragment implements
         left_word =  (left_word_style)view.findViewById(R.id.left_word);
 
         listView = (ListView) view.findViewById(R.id.list);
-
+        dbHelper = new MyDataBaseHelper(getContext(),"Contact.db",null,1);
+        dx = dbHelper.getWritableDatabase();
         //初始化数据
         initData();
         //初始化列表
@@ -88,6 +86,8 @@ public class SecondFragment extends Fragment implements
         //设置列表点击滑动监听
         handler = new Handler();
         left_word.setOnWordsChangeListener(this);
+
+
 
         return view;
     }
@@ -149,7 +149,17 @@ public class SecondFragment extends Fragment implements
                 intent.putExtra("pNum",pNum);
                 intent.putExtra("mBei",mBei);
                 startActivity(intent);
-                Toast.makeText(getActivity(),name.getName(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Person name = list.get(i);
+                dx.delete("Contact","name = ?",name);
+
+                return false;
             }
         });
 
@@ -162,33 +172,23 @@ public class SecondFragment extends Fragment implements
 
         list = new ArrayList<>();
 
-        try {
-            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            Document document = builder.parse(getResources().getAssets().open("contacts_data.xml"));
-            Element element = document.getDocumentElement();
-            NodeList lists = element.getElementsByTagName("list");
-            for (int i = 0; i < lists.getLength(); i++) {
-                Element ele = (Element) lists.item(i);
+        //查询表中数据
+        Cursor cursor = dx.query("Contact",null,null,null,null,null,null);
+        if (cursor.moveToFirst()){
+            do {
+                //遍历Cursor对象，取出数据
+                m = cursor.getString(cursor.getColumnIndex("name"));
+                n = cursor.getString(cursor.getColumnIndex("num"));
+                b = cursor.getString(cursor.getColumnIndex("beizhu"));
 
-                 m= ele.getElementsByTagName("name").item(0).getTextContent().toString();
-                 n = ele.getElementsByTagName("pNumber").item(0).getTextContent().toString();
-                 b = ele.getElementsByTagName("mBeiZhu").item(0).getTextContent().toString();
-                new  Person(m,n,b).setName(m);
+//                new  Person(m,n,b).setName(m);
 
 
                 list.add(new Person(m,n,b));
-
-            }
-
-
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+//            Toast.makeText(getActivity(),name,Toast.LENGTH_LONG).show();
+            }while (cursor.moveToNext());
         }
+        cursor.close();
 
 
         //对集合排序
@@ -238,7 +238,7 @@ public class SecondFragment extends Fragment implements
     @Override
     public void onStart() {
         super.onStart();
-        initData();
+
     }
 
     @Override

@@ -1,16 +1,24 @@
 package com.example.gte.sms_demo_12.Activity;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gte.sms_demo_12.Control_Interface_Activity.Control_MainActivity;
+import com.example.gte.sms_demo_12.DataBase.MyDataBaseHelper;
+import com.example.gte.sms_demo_12.Fragment.SecondFragment;
 import com.example.gte.sms_demo_12.R;
+import com.example.gte.sms_demo_12.mulu_list.Person;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -26,7 +34,7 @@ import javax.xml.parsers.ParserConfigurationException;
  * Created by GTE on 2016/11/17.
  */
 
-public class addActivity extends Activity {
+public class addActivity extends Activity implements View.OnClickListener {
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -42,18 +50,32 @@ public class addActivity extends Activity {
     private String beizhu_name;
     private Toolbar add_toolbar;
 
+    private MyDataBaseHelper dbHelper;
+    private SQLiteDatabase db;
+    private TextView tv;
+
+    private String name;
+    private String num;
+    private String beizhu;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add);
 
-        preferences = getPreferences(Activity.MODE_PRIVATE);
-        editor = preferences.edit();
+        add_machine_num = (EditText) findViewById(R.id.add_Machine_Num);
+        add_phone_num = (EditText) findViewById(R.id.add_Phone_Num);
+        add_beizhu_name = (EditText) findViewById(R.id.add_beizhu_Name);
+
 
         add_toolbar = (Toolbar) findViewById(R.id.add_toolbar);
 
+        tv = (TextView)findViewById(R.id.add_img_top);
+        dbHelper = new MyDataBaseHelper(this,"Contact.db",null,1);
+        db = dbHelper.getWritableDatabase();
         init();
+
 
     }
 
@@ -63,60 +85,73 @@ public class addActivity extends Activity {
 
         add_toolbar.setNavigationIcon(R.mipmap.icon_back);
         add_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            finish();
-        }
-    });
-
-        add_machine_num = (EditText) findViewById(R.id.add_Machine_Num);
-        add_phone_num = (EditText) findViewById(R.id.add_Phone_Num);
-        add_beizhu_name = (EditText) findViewById(R.id.add_beizhu_Name);
-        machine_num = add_machine_num.getText().toString();
-        phone_num = add_phone_num.getText().toString();
-        beizhu_name =add_beizhu_name.getText().toString();
-
-        //实现完成按钮的点击事件，并返回数据给上一级的fragment_2
-        add_finish = (Button) findViewById(R.id.add_finish);
-        add_finish.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                saveData();
-//                Toast.makeText(getApplicationContext(),in,Toast.LENGTH_LONG).show();
+            public void onClick(View v) {
                 finish();
             }
         });
+
+
+
+        //实现完成按钮的点击事件，并返回数据给上一级的fragment_2
+        add_finish = (Button) findViewById(R.id.add_finish);
+
+        add_finish.setOnClickListener(this);
+
+
+//            public void onClick(View view) {
+//
+//                saveData();
+//                Toast.makeText(getApplicationContext(),in,Toast.LENGTH_LONG).show();
+//              finish();
+
+//                 }
+//        });
+
+
     }
 
-    private void saveData(){
-        try {
-         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-         DocumentBuilder  builder = builderFactory.newDocumentBuilder();
-         Document document = builder.parse(getResources().getAssets().open("contacts_data.xml"));
-            Element content = document.getDocumentElement();
+    public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.add_finish:
 
-         Element mList = document.createElement("list");
+                    machine_num = add_machine_num.getText().toString();
+                    phone_num = add_phone_num.getText().toString();
+                    beizhu_name = add_beizhu_name.getText().toString();
 
-         Element mName = document.createElement("name");
-            mName.setTextContent(machine_num);
-         Element pNumber = document.createElement("pNumber");
-            pNumber.setTextContent(phone_num);
-         Element mBeiZhu = document.createElement("mBeiZhu");
-            mBeiZhu.setTextContent(beizhu_name);
+                    ContentValues values = new ContentValues();
+                    //add first data
+                    values.put("name",machine_num);
+                    values.put("num",phone_num);
+                    values.put("beizhu",beizhu_name);
+                    db.insert("Contact", null, values);
+                    values.clear();
 
-         mList.appendChild(mName);
-         mList.appendChild(pNumber);
-         mList.appendChild(mBeiZhu);
-        content.appendChild(mList);
+                    finish();
+//                    //查询表中数据
+//                    Cursor cursor = db.query("Contact",null,null,null,null,null,null);
+//                    if (cursor.moveToLast()){
+//
+//                            //遍历Cursor对象，取出数据
+//                            name = cursor.getString(cursor.getColumnIndex("name"));
+//                            num = cursor.getString(cursor.getColumnIndex("num"));
+//                            beizhu = cursor.getString(cursor.getColumnIndex("beizhu"));
+//
+//                    }
+//                    cursor.close();
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//                    Intent intent = new Intent(this, SecondFragment.class);
+//                    String Name = name;
+//                    String pNum = num;
+//                    String mBei = beizhu;
+//                    intent.putExtra("Name",Name);
+//                    intent.putExtra("pNum",pNum);
+//                    intent.putExtra("mBei",mBei);
+//                    startActivity(intent);
+
+
+                    break;
+            }
 
     }
 }

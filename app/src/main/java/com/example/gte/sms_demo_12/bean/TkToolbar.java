@@ -1,4 +1,4 @@
-package com.example.gte.sms_demo_12;
+package com.example.gte.sms_demo_12.bean;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.gte.sms_demo_12.R;
 
 /**
  * Created by GTE on 2016/11/16.
@@ -45,7 +47,7 @@ public class TkToolbar extends Toolbar {
         if (attrs != null){
             // <!--通过调用TintTypedArray.obtainStyledAttributes获取自定义toolbar的属性集合 -->
             final TintTypedArray a = TintTypedArray.obtainStyledAttributes
-                    (getContext(),attrs,R.styleable.TkToolbar,defStyleAttr,0);
+                    (getContext(),attrs, R.styleable.TkToolbar,defStyleAttr,0);
             // <!--设置rightButton属性-->
             final Drawable rightIcon = a.getDrawable(R.styleable.TkToolbar_rightButtonIcon);
             if (rightIcon != null)

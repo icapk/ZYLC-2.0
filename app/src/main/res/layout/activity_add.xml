@@ -26,7 +26,7 @@
     </android.support.v7.widget.Toolbar>
 
    
-    <ImageView
+    <TextView
         android:id="@+id/add_img_top"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -137,6 +137,19 @@
         android:textColor="#ffffff"
 
        />
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_tv"
+        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
+        android:text="完成"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+
+        />
 
 
 
