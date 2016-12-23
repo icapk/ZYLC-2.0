@@ -19,7 +19,7 @@ public class control_state_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_control_value);
+        setContentView(R.layout.activity_control_time);
         tv_number = (TextView) findViewById(R.id.tv_number);
         tv_toolbar = (TextView) findViewById(R.id.tv_toolbar);
         tv_toolbar.setText("状态");

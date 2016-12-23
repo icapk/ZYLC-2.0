@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.gte.sms_demo_12.Activity.SearchActivity;
 import com.example.gte.sms_demo_12.Activity.addActivity;
+import com.example.gte.sms_demo_12.Activity.changeActivity;
 import com.example.gte.sms_demo_12.Adapter.list_adapter;
 import com.example.gte.sms_demo_12.Control_Interface_Activity.Control_MainActivity;
 import com.example.gte.sms_demo_12.DataBase.MyDataBaseHelper;
@@ -26,6 +27,7 @@ import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.domain.Name;
 import com.example.gte.sms_demo_12.mulu_list.Person;
 import com.example.gte.sms_demo_12.mulu_list.left_word_style;
+import com.example.gte.sms_demo_12.popupList.PopupList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,6 +63,8 @@ public class SecondFragment extends Fragment implements
     private MyDataBaseHelper dbHelper;
     private SQLiteDatabase dx;
 
+    private List<String> popupMenuItemList = new ArrayList<>();
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +72,10 @@ public class SecondFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_2, null);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setTitle("目录");
+
+        popupMenuItemList.add(getString(R.string.change));
+        popupMenuItemList.add(getString(R.string.delete));
+        popupMenuItemList.add(getString(R.string.check));
 
         init();
 
@@ -80,7 +88,7 @@ public class SecondFragment extends Fragment implements
         //初始化数据
         initData();
         //初始化列表
-        initListView();
+//        initListView();
 
 
         //设置列表点击滑动监听
@@ -101,7 +109,7 @@ public class SecondFragment extends Fragment implements
             @Override
             public void onClick(View v) {
                 intent_add = new Intent(getActivity(),addActivity.class);
-                startActivityForResult(intent_add,0);
+                startActivity(intent_add);
             }
         });
 
@@ -131,10 +139,49 @@ public class SecondFragment extends Fragment implements
 
 
     private void initListView() {
-        list_adapter adapter = new list_adapter(this, list);
+
+        final list_adapter adapter = new list_adapter(this, list);
 
         listView.setAdapter(adapter);
         listView.setOnScrollListener(this);
+
+        //listview长按事件
+
+        PopupList popupList = new PopupList();
+        popupList.init(getActivity(), listView, popupMenuItemList, new PopupList.OnPopupListClickListener() {
+            @Override
+            public void onPopupListClick(View contextView, int contextPosition, int position) {
+                Person name = list.get(contextPosition);
+                switch (position) {
+                    //修改
+                    case 0:
+                        Toast.makeText(getActivity(), "修改  "+name.getName() , Toast.LENGTH_LONG).show();
+                        intent_add = new Intent(getActivity(),changeActivity.class);
+                        startActivity(intent_add);
+
+                        break;
+                    //删除
+                    case 1:
+                        Toast.makeText(getActivity(), "删除  "+name.getName(), Toast.LENGTH_LONG).show();
+                        dx.delete("Contact","name=?",new String[]{name.getName()});
+
+                        adapter.notifyDataSetChanged();
+
+                        break;
+                    //查看
+                    case 2:
+                        Toast.makeText(getActivity(), "当前手机号为："+ name.getpNumber() , Toast.LENGTH_LONG).show();
+
+                        break;
+                }
+//                Toast.makeText(getActivity(), contextPosition + "long"+ position, Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+
+        //listview点击事件
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -152,18 +199,10 @@ public class SecondFragment extends Fragment implements
 
             }
         });
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Person name = list.get(i);
-                dx.delete("Contact","name = ?",name);
-
-                return false;
-            }
-        });
 
     }
+
+
 
     /**
      * 初始化联系人列表信息
@@ -244,7 +283,8 @@ public class SecondFragment extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
-        initData();
+//        initData();
+        initListView();
     }
 
     /**
