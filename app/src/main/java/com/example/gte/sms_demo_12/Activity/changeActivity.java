@@ -2,6 +2,7 @@ package com.example.gte.sms_demo_12.Activity;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gte.sms_demo_12.DataBase.MyDataBaseHelper;
 import com.example.gte.sms_demo_12.R;
@@ -41,6 +43,9 @@ public class changeActivity extends Activity implements View.OnClickListener {
     private String num;
     private String beizhu;
 
+    private ContentValues values;
+    private TextView tv_change;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +60,36 @@ public class changeActivity extends Activity implements View.OnClickListener {
         add_toolbar = (Toolbar) findViewById(R.id.add_toolbar);
 
         tv = (TextView)findViewById(R.id.add_img_top);
+        tv_change = (TextView)findViewById(R.id.tv_add_change);
+        tv_change.setText("修改");
+
         dbHelper = new MyDataBaseHelper(this,"Contact.db",null,1);
         db = dbHelper.getWritableDatabase();
         init();
+//        add_finish.setClickable(false);
+
+        machine_num = add_machine_num.getText().toString();
+        phone_num = add_phone_num.getText().toString();
+        beizhu_name = add_beizhu_name.getText().toString();
+        values = new ContentValues();
+//        if (machine_num != null || phone_num != null) {
+//            add_finish.setClickable(true);
+//        }
+
+        Intent intent = getIntent();
+        name = intent.getStringExtra("Name");
+        num = intent.getStringExtra("pNum");
+        beizhu = intent.getStringExtra("mBei");
+
+        add_machine_num.setText(name);
+        add_phone_num.setText(num);
+        add_beizhu_name.setText(beizhu);
+
+        //实现完成按钮的点击事件，并返回数据给上一级的fragment_2
+        add_finish = (Button) findViewById(R.id.add_finish);
+
+        add_finish.setOnClickListener(this);
+
 
 
     }
@@ -66,31 +98,19 @@ public class changeActivity extends Activity implements View.OnClickListener {
 
 
 
-        add_toolbar.setNavigationIcon(R.mipmap.icon_back);
-        add_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-
-
-        //实现完成按钮的点击事件，并返回数据给上一级的fragment_2
-        add_finish = (Button) findViewById(R.id.add_finish);
-
-        add_finish.setOnClickListener(this);
-
-
-//            public void onClick(View view) {
-//
-//                saveData();
-//                Toast.makeText(getApplicationContext(),in,Toast.LENGTH_LONG).show();
-//              finish();
-
-//                 }
+//        add_toolbar.setNavigationIcon(R.mipmap.icon_back);
+//        add_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //add first data
+//                values.put("name",machine_num);
+//                values.put("num",phone_num);
+//                values.put("beizhu",beizhu_name);
+//                db.insert("Contact", null, values);
+//                values.clear();
+//                finish();
+//            }
 //        });
-
 
     }
 
@@ -98,42 +118,17 @@ public class changeActivity extends Activity implements View.OnClickListener {
             switch (v.getId()){
                 case R.id.add_finish:
 
-                    machine_num = add_machine_num.getText().toString();
-                    phone_num = add_phone_num.getText().toString();
-                    beizhu_name = add_beizhu_name.getText().toString();
-
-                    ContentValues values = new ContentValues();
-                    //add first data
-                    values.put("name",machine_num);
-                    values.put("num",phone_num);
-                    values.put("beizhu",beizhu_name);
-                    db.insert("Contact", null, values);
-                    values.clear();
-
-                    finish();
-//                    //查询表中数据
-//                    Cursor cursor = db.query("Contact",null,null,null,null,null,null);
-//                    if (cursor.moveToLast()){
-//
-//                            //遍历Cursor对象，取出数据
-//                            name = cursor.getString(cursor.getColumnIndex("name"));
-//                            num = cursor.getString(cursor.getColumnIndex("num"));
-//                            beizhu = cursor.getString(cursor.getColumnIndex("beizhu"));
-//
-//                    }
-//                    cursor.close();
-
-//                    Intent intent = new Intent(this, SecondFragment.class);
-//                    String Name = name;
-//                    String pNum = num;
-//                    String mBei = beizhu;
-//                    intent.putExtra("Name",Name);
-//                    intent.putExtra("pNum",pNum);
-//                    intent.putExtra("mBei",mBei);
-//                    startActivity(intent);
 
 
-                    break;
+                //添加数据
+                values.put("name", machine_num);
+                values.put("num", phone_num);
+                values.put("beizhu", beizhu_name);
+                db.insert("Contact", null, values);
+                values.clear();
+                finish();
+
+                break;
             }
 
     }

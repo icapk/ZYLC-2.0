@@ -57,6 +57,7 @@ public class addActivity extends Activity implements View.OnClickListener {
     private String name;
     private String num;
     private String beizhu;
+    private TextView tv_add;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,9 @@ public class addActivity extends Activity implements View.OnClickListener {
         add_toolbar = (Toolbar) findViewById(R.id.add_toolbar);
 
         tv = (TextView)findViewById(R.id.add_img_top);
+        tv_add = (TextView)findViewById(R.id.tv_add_change);
+        tv_add.setText("添加");
+
         dbHelper = new MyDataBaseHelper(this,"Contact.db",null,1);
         db = dbHelper.getWritableDatabase();
         init();
@@ -97,16 +101,6 @@ public class addActivity extends Activity implements View.OnClickListener {
         add_finish = (Button) findViewById(R.id.add_finish);
 
         add_finish.setOnClickListener(this);
-
-
-//            public void onClick(View view) {
-//
-//                saveData();
-//                Toast.makeText(getApplicationContext(),in,Toast.LENGTH_LONG).show();
-//              finish();
-
-//                 }
-//        });
 
 
     }

@@ -31,7 +31,7 @@ public class control_fixed_value_Activity extends AppCompatActivity {
         name = intent.getStringExtra("Name");
         pNum = intent.getStringExtra("pNum");
         mBei = intent.getStringExtra("mBei");
-        tv_number.setText(name + "\n" + pNum + "\n" + mBei + "\n");
+        tv_number.setText(name + "\n" + pNum + "\n" );
     }
 
 }

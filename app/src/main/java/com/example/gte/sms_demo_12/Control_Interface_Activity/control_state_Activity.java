@@ -13,7 +13,6 @@ public class control_state_Activity extends AppCompatActivity {
     private TextView tv_toolbar;
     private String name;
     private String pNum;
-    private String mBei;
 
 
     @Override
@@ -29,8 +28,7 @@ public class control_state_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         name = intent.getStringExtra("Name");
         pNum = intent.getStringExtra("pNum");
-        mBei = intent.getStringExtra("mBei");
-        tv_number.setText(name + "\n" + pNum + "\n" + mBei + "\n");
+        tv_number.setText(name + "\n" + pNum + "\n" );
     }
 
 }

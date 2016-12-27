@@ -76,8 +76,8 @@ public class left_word_style extends View{
             //判断是不是我们按下的当前字母
             if (touchIndex == i) {
                 //绘制文字圆形背景
-                canvas.drawCircle(itemWidth / 2, itemHeight / 2 + i * itemHeight, 23, bgPaint);
-                wordsPaint.setColor(Color.WHITE);
+//                canvas.drawCircle(itemWidth / 2, itemHeight / 2 + i * itemHeight, 23, bgPaint);
+//                wordsPaint.setColor(Color.WHITE);
             } else {
                 wordsPaint.setColor(Color.GRAY);
             }

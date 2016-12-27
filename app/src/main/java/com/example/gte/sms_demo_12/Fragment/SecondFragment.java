@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -65,6 +66,13 @@ public class SecondFragment extends Fragment implements
 
     private List<String> popupMenuItemList = new ArrayList<>();
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        popupMenuItemList.add(getString(R.string.change));
+        popupMenuItemList.add(getString(R.string.delete));
+        popupMenuItemList.add(getString(R.string.check));
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,9 +81,6 @@ public class SecondFragment extends Fragment implements
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setTitle("目录");
 
-        popupMenuItemList.add(getString(R.string.change));
-        popupMenuItemList.add(getString(R.string.delete));
-        popupMenuItemList.add(getString(R.string.check));
 
         init();
 
@@ -88,7 +93,7 @@ public class SecondFragment extends Fragment implements
         //初始化数据
         initData();
         //初始化列表
-//        initListView();
+        initListView();
 
 
         //设置列表点击滑动监听
@@ -156,17 +161,26 @@ public class SecondFragment extends Fragment implements
                     //修改
                     case 0:
                         Toast.makeText(getActivity(), "修改  "+name.getName() , Toast.LENGTH_LONG).show();
-                        intent_add = new Intent(getActivity(),changeActivity.class);
-                        startActivity(intent_add);
+                        dx.delete("Contact","name=?",new String[]{name.getName()});
+
+                        Intent intent = new Intent(getActivity(), changeActivity.class);
+
+                        String Name = name.getName();
+                        String pNum = name.getpNumber();
+                        String mBei = name.getmBeiZhu();
+                        intent.putExtra("Name",Name);
+                        intent.putExtra("pNum",pNum);
+                        intent.putExtra("mBei",mBei);
+                        startActivity(intent);
 
                         break;
                     //删除
                     case 1:
-                        Toast.makeText(getActivity(), "删除  "+name.getName(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "删除  “"+name.getName()+"”  成功！", Toast.LENGTH_LONG).show();
                         dx.delete("Contact","name=?",new String[]{name.getName()});
 
-                        adapter.notifyDataSetChanged();
-
+//                        adapter.notifyDataSetChanged();
+                        onStart();
                         break;
                     //查看
                     case 2:
@@ -277,6 +291,9 @@ public class SecondFragment extends Fragment implements
     @Override
     public void onStart() {
         super.onStart();
+        initData();
+        initListView();
+        Toast.makeText(getActivity(), "reStart" , Toast.LENGTH_SHORT).show();
 
     }
 
@@ -284,7 +301,18 @@ public class SecondFragment extends Fragment implements
     public void onResume() {
         super.onResume();
 //        initData();
-        initListView();
+        Toast.makeText(getActivity(), "Resume" , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        onDestroyView();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 
     /**

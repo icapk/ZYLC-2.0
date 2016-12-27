@@ -1,6 +1,8 @@
 package com.example.gte.sms_demo_12.Control_Interface_Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -80,6 +82,19 @@ public class Control_MainActivity extends AppCompatActivity implements View.OnCl
 //                btn_fixed_value_define.putExtra("mbei",mBei);
 //                startActivity(btn_fixed_value_define);
                 Toast.makeText(this,"定值定义",Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Control_MainActivity.this);
+                dialog.setIcon(R.drawable.zylc);
+                dialog.setCancelable(true);
+                dialog.setPositiveButton("返回",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog,int which){
+                        finish();   //退出当前应用
+                    }
+                });
+                dialog.setNegativeButton("返回",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog ,int which){}
+                });
+                dialog.show();
+
                 break;
         }
     }
