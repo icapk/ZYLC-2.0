@@ -118,8 +118,6 @@ public class changeActivity extends Activity implements View.OnClickListener {
             switch (v.getId()){
                 case R.id.add_finish:
 
-
-
                 //添加数据
                 values.put("name", machine_num);
                 values.put("num", phone_num);

@@ -18,7 +18,7 @@
 
 
     <TextView
-        android:id="@+id/tv_time_number"
+        android:id="@+id/tv_state_number"
         android:background="@drawable/corners_bg_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,12 +36,12 @@
         >
 
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/tv_state"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:gravity="center"
-            android:hint="显示时间"
+            android:hint="显示状态"
             android:background="@drawable/corners_bg_tv"/>
 
     </LinearLayout>
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center">
 
         <LinearLayout
@@ -63,25 +63,74 @@
             <Button
                 android:background="@drawable/center_letter_bg"
                 android:layout_gravity="center"
-                android:text="查询时间"
+                android:text="查询状态"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:id="@+id/btn_check_time"
+                android:layout_height="70dp"
+                android:id="@+id/btn_check_state"/>
+
+            <Button
+            android:background="@drawable/center_letter_bg"
+            android:layout_gravity="center"
+            android:text="复归"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/btn_fugui"
+            />
                 />
         </LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <Button
+            android:background="@drawable/center_letter_bg"
+            android:layout_gravity="center"
+            android:text="预分"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+
+            android:id="@+id/btn_yufen"/>
+
+        <Button
+            android:background="@drawable/center_letter_bg"
+            android:layout_gravity="center"
+            android:text="分闸"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/btn_fenzha"
+            />
+
+    </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
+
             <Button
                 android:background="@drawable/center_letter_bg"
                 android:layout_gravity="center"
-                android:text="发送当前时间"
+                android:text="预合"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:id="@+id/btn_send_time"
+                android:layout_height="70dp"
+
+                android:id="@+id/btn_yuhe"/>
+
+            <Button
+                android:background="@drawable/center_letter_bg"
+                android:layout_gravity="center"
+                android:text="合闸"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/btn_hezha"
                 />
+
         </LinearLayout>
 
 

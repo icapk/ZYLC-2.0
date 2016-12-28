@@ -25,7 +25,7 @@
         <activity android:name=".Control_Interface_Activity.Control_MainActivity" />
         <activity android:name=".Control_Interface_Activity.control_time_Activity" />
         <activity android:name=".Control_Interface_Activity.control_fixed_value_Activity" />
-        <activity android:name=".Control_Interface_Activity.control_state_Activity"></activity>
+        <activity android:name=".Control_Interface_Activity.control_state_Activity"/>
 
 
     </application>

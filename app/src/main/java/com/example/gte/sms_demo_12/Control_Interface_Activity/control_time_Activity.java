@@ -49,7 +49,7 @@ public class control_time_Activity extends Activity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_time);
-        tv_number = (TextView) findViewById(R.id.tv_number);
+        tv_number = (TextView) findViewById(R.id.tv_time_number);
         tv_time = (TextView) findViewById(R.id.tv_time);
         btn_check_time = (Button)findViewById(R.id.btn_check_time);
         btn_send_time = (Button)findViewById(R.id.btn_send_time);
@@ -60,11 +60,7 @@ public class control_time_Activity extends Activity implements View.OnClickListe
         tv_toolbar = (TextView) findViewById(R.id.tv_toolbar);
         tv_toolbar.setText("时间");
 
-
-
-
-
-    smsmanager = SmsManager.getDefault();
+        smsmanager = SmsManager.getDefault();
         Intent sentIntent = new Intent("SEND_SMS_ACTION");
         Pi = PendingIntent.getBroadcast(control_time_Activity.this,0,sentIntent,0);
 
