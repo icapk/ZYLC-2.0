@@ -68,9 +68,7 @@ public class changeActivity extends Activity implements View.OnClickListener {
         init();
 //        add_finish.setClickable(false);
 
-        machine_num = add_machine_num.getText().toString();
-        phone_num = add_phone_num.getText().toString();
-        beizhu_name = add_beizhu_name.getText().toString();
+
         values = new ContentValues();
 //        if (machine_num != null || phone_num != null) {
 //            add_finish.setClickable(true);
@@ -117,14 +115,22 @@ public class changeActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
             switch (v.getId()){
                 case R.id.add_finish:
+                    machine_num = add_machine_num.getText().toString();
+                    phone_num = add_phone_num.getText().toString();
+                    beizhu_name = add_beizhu_name.getText().toString();
 
                 //添加数据
-                values.put("name", machine_num);
-                values.put("num", phone_num);
-                values.put("beizhu", beizhu_name);
-                db.insert("Contact", null, values);
-                values.clear();
-                finish();
+                    values.put("name", machine_num);
+                    values.put("num", phone_num);
+                    values.put("beizhu", beizhu_name);
+                    if( machine_num.length() != 0 && phone_num.length() ==11){
+                        db.insert("Contact", null, values);
+                        values.clear();
+                        finish();
+                    }else {
+                        Toast.makeText(this,"请输入正确手机号且设备号不能为空",Toast.LENGTH_SHORT).show();
+
+                    }
 
                 break;
             }

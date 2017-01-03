@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e4e3e3"
     >
 
     //Toolbar布局layout_height设置为wrap_content
@@ -20,12 +21,25 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/toolbar"/>
 
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="添加机器"
+        android:textColor="#000000"
+        android:background="@drawable/corners_bg_tv"
+        android:layout_toLeftOf="@+id/left_word" />
+
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btn_add"
         android:layout_toLeftOf="@+id/left_word"
         android:layout_toStartOf="@+id/left_word" />
 

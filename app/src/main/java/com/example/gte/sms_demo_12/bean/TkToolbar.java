@@ -56,9 +56,6 @@ public class TkToolbar extends Toolbar {
             }
 
 
-            //设置search属性
-            boolean showTbSearch = a.getBoolean(R.styleable.TkToolbar_isShowTbSearch,false);
-            tb_search.setVisibility(showTbSearch ? mView.VISIBLE : mView.GONE);
             //回收
             a.recycle();
         }
@@ -72,7 +69,7 @@ public class TkToolbar extends Toolbar {
             mInflater = LayoutInflater.from(getContext());
         mView = mInflater.inflate(R.layout.tb_layout,null);
 
-        tb_search = (EditText) mView.findViewById(R.id.tb_search);
+
         tb_title = (TextView) mView.findViewById(R.id.tb_title);
         tb_rightButton = (ImageButton) mView.findViewById(R.id.tb_rightButton);
 

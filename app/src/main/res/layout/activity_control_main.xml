@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#e4e3e3">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -44,8 +45,10 @@
                 android:background="@drawable/center_letter_bg"
                 android:layout_gravity="center"
                 android:text="时间"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:textSize="30sp"
                 android:id="@+id/btn_time"
                  />
         </LinearLayout>
@@ -59,8 +62,10 @@
                     android:background="@drawable/center_letter_bg"
                     android:layout_gravity="center"
                     android:text="状态"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="30dp"
+                    android:textSize="30sp"
                     android:id="@+id/btn_state"
                     />
             </LinearLayout>
@@ -85,8 +90,10 @@
                 android:background="@drawable/center_letter_bg"
                 android:layout_gravity="center"
                 android:text="定值"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:textSize="30sp"
                 android:id="@+id/btn_fixed_value"
                 />
         </LinearLayout>
@@ -102,8 +109,10 @@
             android:background="@drawable/center_letter_bg"
             android:layout_gravity="center"
             android:text="定值定义"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:textSize="30sp"
             android:id="@+id/btn_fixed_value_define"
             />
     </LinearLayout>

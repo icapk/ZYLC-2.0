@@ -9,16 +9,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gte.sms_demo_12.Activity.SearchActivity;
 import com.example.gte.sms_demo_12.Activity.addActivity;
 import com.example.gte.sms_demo_12.Activity.changeActivity;
 import com.example.gte.sms_demo_12.Adapter.list_adapter;
@@ -35,9 +34,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static android.R.attr.name;
-import static android.content.Intent.getIntent;
-
 
 /**
  * Created by GTE on 2016/11/10.
@@ -46,10 +42,10 @@ import static android.content.Intent.getIntent;
 
 
 public class SecondFragment extends Fragment implements
-        left_word_style.onWordsChangeListener, AbsListView.OnScrollListener {
+        left_word_style.onWordsChangeListener, AbsListView.OnScrollListener, View.OnClickListener {
 
     private Toolbar toolbar;
-    Intent intent_search;
+    private Button btn_add;
     Intent intent_add;
     private TextView tv;
     private left_word_style left_word;
@@ -81,26 +77,26 @@ public class SecondFragment extends Fragment implements
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setTitle("目录");
 
+//        init();
 
-        init();
-
+        btn_add = (Button)view.findViewById(R.id.btn_add);
+        btn_add.setOnClickListener(this);
         tv = (TextView) view.findViewById(R.id.tv);
         left_word =  (left_word_style)view.findViewById(R.id.left_word);
 
         listView = (ListView) view.findViewById(R.id.list);
         dbHelper = new MyDataBaseHelper(getContext(),"Contact.db",null,1);
         dx = dbHelper.getWritableDatabase();
+
         //初始化数据
         initData();
+
         //初始化列表
         initListView();
-
 
         //设置列表点击滑动监听
         handler = new Handler();
         left_word.setOnWordsChangeListener(this);
-
-
 
         return view;
     }
@@ -117,27 +113,6 @@ public class SecondFragment extends Fragment implements
                 startActivity(intent_add);
             }
         });
-
-
-        //设置右上角的填充菜单
-        toolbar.inflateMenu(R.menu.main_menu);
-        //设置menu点击事件
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                //判断被点击的item
-                if (item.getItemId() == R.id.menu_toolbar_add) {
-
-                    intent_search = new Intent(getActivity(),SearchActivity.class);
-                    startActivityForResult(intent_search,1);
-
-                }
-                return true;
-            }
-        });
-
-
 
     }
 
@@ -176,6 +151,7 @@ public class SecondFragment extends Fragment implements
                         break;
                     //删除
                     case 1:
+
                         Toast.makeText(getActivity(), "删除  “"+name.getName()+"”  成功！", Toast.LENGTH_LONG).show();
                         dx.delete("Contact","name=?",new String[]{name.getName()});
 
@@ -334,4 +310,17 @@ public class SecondFragment extends Fragment implements
         }, 500);
     }
 
+    /**
+     * 添加按钮点击事件
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_add:
+                intent_add = new Intent(getActivity(),addActivity.class);
+                startActivity(intent_add);
+                break;
+        }
+    }
 }

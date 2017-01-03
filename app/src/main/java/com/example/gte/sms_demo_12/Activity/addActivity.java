@@ -109,19 +109,25 @@ public class addActivity extends Activity implements View.OnClickListener {
             switch (v.getId()){
                 case R.id.add_finish:
 
+
                     machine_num = add_machine_num.getText().toString();
                     phone_num = add_phone_num.getText().toString();
                     beizhu_name = add_beizhu_name.getText().toString();
+                    if(machine_num.length() == 0 || phone_num.length() ==0){
+                        Toast.makeText(this,"设备号或手机号不能为空",Toast.LENGTH_SHORT).show();
+                    }else {
+                        ContentValues values = new ContentValues();
+                        //add first data
+                        values.put("name",machine_num);
+                        values.put("num",phone_num);
+                        values.put("beizhu",beizhu_name);
+                        db.insert("Contact", null, values);
+                        values.clear();
+                        finish();
+                    }
 
-                    ContentValues values = new ContentValues();
-                    //add first data
-                    values.put("name",machine_num);
-                    values.put("num",phone_num);
-                    values.put("beizhu",beizhu_name);
-                    db.insert("Contact", null, values);
-                    values.clear();
 
-                    finish();
+
 //                    //查询表中数据
 //                    Cursor cursor = db.query("Contact",null,null,null,null,null,null);
 //                    if (cursor.moveToLast()){

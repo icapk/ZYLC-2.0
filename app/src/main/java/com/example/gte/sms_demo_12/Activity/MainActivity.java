@@ -53,7 +53,7 @@ public class MainActivity extends FragmentActivity {
      */
 
     private void initTab() {
-        Tab recording = new Tab(R.string.recording, R.drawable.selecter_recording, FirstFragment.class);
+        Tab recording = new Tab(R.string.product, R.drawable.selecter_recording, FirstFragment.class);
         Tab list = new Tab(R.string.list, R.drawable.selecter_list, SecondFragment.class);
         Tab about = new Tab(R.string.about, R.drawable.selecter_about, ThirdFragment.class);
 

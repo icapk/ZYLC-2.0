@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gte.sms_demo_12">
-
     //获取收发短信权限
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <!-- if you want to load images from the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- if you want to load images from a file OR from the internet -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,14 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.SearchActivity" />
+        <activity android:name=".Activity.SplashActivity"/>
         <activity android:name=".Activity.addActivity" />
         <activity android:name=".Activity.changeActivity" />
         <activity android:name=".Control_Interface_Activity.Control_MainActivity" />
         <activity android:name=".Control_Interface_Activity.control_time_Activity" />
         <activity android:name=".Control_Interface_Activity.control_fixed_value_Activity" />
-        <activity android:name=".Control_Interface_Activity.control_state_Activity"/>
-
+        <activity android:name=".Control_Interface_Activity.control_state_Activity" />
 
     </application>
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#eae8e8">
+    android:background="#e4e3e3">
 
     <!-- 使用普通Toolbar -->
     <android.support.v7.widget.Toolbar
@@ -135,7 +135,7 @@
         android:layout_margin="20dp"
         android:text="完成"
         android:textSize="20sp"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
 
        />
 

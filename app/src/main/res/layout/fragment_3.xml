@@ -2,17 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e4e3e3"
     android:orientation="vertical">
 
     //Toolbar布局layout_height设置为wrap_content
     <include layout="@layout/tb_fragment"/>
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/splash"/>
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tv_title_eng"
+            android:layout_marginBottom="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GOODTHINK ELECTRIC"
+            android:textColor="#4aa8e2"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_above="@+id/tv_name"
+            android:layout_centerHorizontal="true" />
 
 
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="固馨电气（上海）有限公司"
+        android:layout_marginBottom="53dp"
+        android:textColor="#1c70ef"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:id="@+id/tv_name"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/tv_title"
+        android:layout_alignStart="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="智能开关短信操作系统"
+            android:layout_gravity="top"
+            android:textColor="#4aa8e2"
+            android:textSize="25sp"
+            android:layout_marginTop="49dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
 
 
 </LinearLayout>
