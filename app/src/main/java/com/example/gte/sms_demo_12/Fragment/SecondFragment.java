@@ -135,7 +135,6 @@ public class SecondFragment extends Fragment implements
                 switch (position) {
                     //修改
                     case 0:
-                        Toast.makeText(getActivity(), "修改  "+name.getName() , Toast.LENGTH_LONG).show();
                         dx.delete("Contact","name=?",new String[]{name.getName()});
 
                         Intent intent = new Intent(getActivity(), changeActivity.class);
@@ -269,7 +268,6 @@ public class SecondFragment extends Fragment implements
         super.onStart();
         initData();
         initListView();
-        Toast.makeText(getActivity(), "reStart" , Toast.LENGTH_SHORT).show();
 
     }
 
@@ -277,7 +275,7 @@ public class SecondFragment extends Fragment implements
     public void onResume() {
         super.onResume();
 //        initData();
-        Toast.makeText(getActivity(), "Resume" , Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

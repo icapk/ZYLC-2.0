@@ -7,15 +7,20 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gte.sms_demo_12.Control_Interface_Activity.Control_MainActivity;
 import com.example.gte.sms_demo_12.DataBase.MyDataBaseHelper;
+import com.example.gte.sms_demo_12.Fragment.FirstFragment;
 import com.example.gte.sms_demo_12.Fragment.SecondFragment;
 import com.example.gte.sms_demo_12.R;
 import com.example.gte.sms_demo_12.mulu_list.Person;
@@ -25,6 +30,7 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -58,6 +64,7 @@ public class addActivity extends Activity implements View.OnClickListener {
     private String num;
     private String beizhu;
     private TextView tv_add;
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,32 +133,9 @@ public class addActivity extends Activity implements View.OnClickListener {
                         finish();
                     }
 
-
-
-//                    //查询表中数据
-//                    Cursor cursor = db.query("Contact",null,null,null,null,null,null);
-//                    if (cursor.moveToLast()){
-//
-//                            //遍历Cursor对象，取出数据
-//                            name = cursor.getString(cursor.getColumnIndex("name"));
-//                            num = cursor.getString(cursor.getColumnIndex("num"));
-//                            beizhu = cursor.getString(cursor.getColumnIndex("beizhu"));
-//
-//                    }
-//                    cursor.close();
-
-//                    Intent intent = new Intent(this, SecondFragment.class);
-//                    String Name = name;
-//                    String pNum = num;
-//                    String mBei = beizhu;
-//                    intent.putExtra("Name",Name);
-//                    intent.putExtra("pNum",pNum);
-//                    intent.putExtra("mBei",mBei);
-//                    startActivity(intent);
-
-
                     break;
             }
 
     }
+
 }

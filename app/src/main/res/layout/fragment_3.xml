@@ -15,32 +15,41 @@
         android:gravity="center_horizontal"
         >
 
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/logo"
+            android:layout_below="@+id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp" />
+
+
         <TextView
             android:id="@+id/tv_title_eng"
-            android:layout_marginBottom="11dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="GOODTHINK ELECTRIC"
             android:textColor="#4aa8e2"
             android:textSize="15sp"
             android:layout_gravity="center"
-            android:layout_above="@+id/tv_name"
+            android:layout_marginBottom="96dp"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
-
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="固馨电气（上海）有限公司"
-        android:layout_marginBottom="53dp"
-        android:textColor="#1c70ef"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:id="@+id/tv_name"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/tv_title"
-        android:layout_alignStart="@+id/tv_title" />
+            android:text="www.gtesh.com"
+            android:textStyle="italic"
+            android:textSize="30sp"
+            android:textColor="#f25a5a"
+            android:autoLink="web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_link"
+            android:layout_marginBottom="32dp"
+            android:layout_above="@+id/tv_title_eng"
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/tv_title"
@@ -49,8 +58,23 @@
             android:text="智能开关短信操作系统"
             android:layout_gravity="top"
             android:textColor="#4aa8e2"
-            android:textSize="25sp"
-            android:layout_marginTop="49dp"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/tv_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="54dp"
+            android:layout_marginStart="54dp" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="固馨电气（上海）有限公司"
+            android:textColor="#1c70ef"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:id="@+id/tv_name"
+            android:layout_marginTop="102dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
