@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     //Toolbar布局layout_height设置为wrap_content
-    <include layout="@layout/tb_fragment"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,18 +26,6 @@
 
 
         <TextView
-            android:id="@+id/tv_title_eng"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GOODTHINK ELECTRIC"
-            android:textColor="#4aa8e2"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="96dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
             android:text="www.gtesh.com"
             android:textStyle="italic"
             android:textSize="30sp"
@@ -52,6 +39,32 @@
             android:layout_centerHorizontal="true"/>
 
         <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="固馨电气（上海）有限公司"
+            android:textColor="#1c70ef"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:id="@+id/tv_name"
+            android:layout_marginTop="65dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tv_title_eng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GOODTHINK ELECTRIC"
+            android:textColor="#4aa8e2"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="61dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/logo"
+            android:layout_alignEnd="@+id/logo" />
+
+        <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,25 +74,12 @@
             android:textSize="20sp"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/tv_name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="54dp"
-            android:layout_marginStart="54dp" />
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="固馨电气（上海）有限公司"
-            android:textColor="#1c70ef"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:id="@+id/tv_name"
-            android:layout_marginTop="102dp"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
 
     </RelativeLayout>
+
+    <include layout="@layout/tb_fragment"/>
 
 
 </LinearLayout>

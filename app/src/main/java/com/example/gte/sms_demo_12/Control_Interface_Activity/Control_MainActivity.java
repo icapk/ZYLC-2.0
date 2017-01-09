@@ -1,5 +1,6 @@
 package com.example.gte.sms_demo_12.Control_Interface_Activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -76,22 +77,9 @@ public class Control_MainActivity extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.btn_fixed_value_define:
-//                Intent btn_fixed_value_define = new Intent(this,control_state_Activity.class);
-//                btn_fixed_value_define.putExtra("Name",name);
-//                btn_fixed_value_define.putExtra("pNum",pNum);
-//                btn_fixed_value_define.putExtra("mbei",mBei);
-//                startActivity(btn_fixed_value_define);
-
-                AlertDialog.Builder dialog = new AlertDialog.Builder(Control_MainActivity.this);
-                dialog.setIcon(R.drawable.zylc);
-                dialog.setTitle("tishi");
-                dialog.setCancelable(true);
-
-                dialog.setNegativeButton("返回",new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog ,int which){}
-                });
+                //初始化一个自定义的Dialog
+                Dialog dialog = new MyDialog(Control_MainActivity.this);
                 dialog.show();
-
                 break;
         }
     }

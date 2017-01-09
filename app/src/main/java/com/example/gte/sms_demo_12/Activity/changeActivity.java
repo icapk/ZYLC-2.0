@@ -2,10 +2,12 @@ package com.example.gte.sms_demo_12.Activity;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -88,7 +90,9 @@ public class changeActivity extends Activity implements View.OnClickListener {
 
         add_finish.setOnClickListener(this);
 
-
+        machine_num = add_machine_num.getText().toString();
+        phone_num = add_phone_num.getText().toString();
+        beizhu_name = add_beizhu_name.getText().toString();
 
     }
 
@@ -115,9 +119,7 @@ public class changeActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
             switch (v.getId()){
                 case R.id.add_finish:
-                    machine_num = add_machine_num.getText().toString();
-                    phone_num = add_phone_num.getText().toString();
-                    beizhu_name = add_beizhu_name.getText().toString();
+
 
                 //添加数据
                     values.put("name", machine_num);
@@ -134,6 +136,41 @@ public class changeActivity extends Activity implements View.OnClickListener {
 
                 break;
             }
+
+    }
+
+     /*
+     *返回键询问是否保存
+     */
+
+    public void onBackPressed() {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(changeActivity.this);
+        setTitle("退出编辑");
+        dialog.setMessage("是否保存？");
+        dialog.setCancelable(true);
+        dialog.setPositiveButton("确定",new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog,int which){
+                //添加数据
+                values.put("name", machine_num);
+                values.put("num", phone_num);
+                values.put("beizhu", beizhu_name);
+                if( machine_num.length() != 0 && phone_num.length() ==11){
+                    db.insert("Contact", null, values);
+                    values.clear();
+                    finish();
+                }
+//                else {
+//                    Toast.makeText(getApplication(),"请输入正确手机号且设备号不能为空",Toast.LENGTH_SHORT).show();
+//                }
+            }
+        });
+        dialog.setNegativeButton("返回",new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog , int which){
+
+            }
+        });
+        dialog.create().show();
 
     }
 }

@@ -55,35 +55,36 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="40dp"
                 android:text="设置序号："/>
             <EditText
                 android:id="@+id/ed_num"
-                android:layout_width="150dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="0-9"/>
+                android:gravity="center"
+                android:hint="01-14"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="40dp"
                 android:text="设置数值："/>
             <EditText
                 android:id="@+id/ed_value"
-                android:layout_width="150dp"
+                android:layout_width="170dp"
+                android:gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="0-9"/>
+                android:singleLine="true"
+                android:hint="请查询定值定义表"/>
         </LinearLayout>
 
         <Button

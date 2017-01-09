@@ -1,10 +1,14 @@
 package com.example.gte.sms_demo_12.Control_Interface_Activity;
 
+import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gte.sms_demo_12.R;
+
+import static android.telephony.SmsMessage.createFromPdu;
 
 public class control_fixed_value_Activity extends AppCompatActivity implements View.OnClickListener {
 
@@ -73,17 +79,42 @@ public class control_fixed_value_Activity extends AppCompatActivity implements V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_check_fixed_value:
-                Toast.makeText(control_fixed_value_Activity.this,"查询定值",Toast.LENGTH_LONG).show();
-//                smsmanager.sendText.Message(pNum, null, "查询定值", Pi, null);
+//                Toast.makeText(control_fixed_value_Activity.this,"查询定值",Toast.LENGTH_LONG).show();
+//                smsmanager.sendTextMessage(pNum, null, "查询定值", Pi, null);
                 break;
             case R.id.btn_check_fixed_value_define:
-                Toast.makeText(control_fixed_value_Activity.this,"查询定值定义",Toast.LENGTH_LONG).show();
+                //初始化一个自定义的Dialog
+                Dialog dialog = new MyDialog(control_fixed_value_Activity.this);
+                dialog.show();
                 break;
             case R.id.btn_set_fixed_value:
-                Toast.makeText(control_fixed_value_Activity.this,"设置定值#"+num+"#"+value,Toast.LENGTH_LONG).show();
-//                smsmanager.sendTextMessage(pNum, null, "设置定值#"+num+"#"+value, Pi, null);
+//                Toast.makeText(control_fixed_value_Activity.this,"设置定值#"+num+"#"+value,Toast.LENGTH_LONG).show();
+                smsmanager.sendTextMessage(pNum, null, "设置定值#0"+num+"#"+value, Pi, null);
                 break;
         }
         
+    }
+
+
+
+    class MessageReceiver extends BroadcastReceiver
+    {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle bundle = intent.getExtras();
+            Object[] pdus = (Object[]) bundle.get("pdus");//提取短信信息
+            SmsMessage[] messages = new SmsMessage[pdus.length];
+            for (int i = 0; i < messages.length; i++) {
+                messages[i] = createFromPdu((byte[]) pdus[i]);
+            }
+            String address = messages[0].getOriginatingAddress();
+            String fullMessage = "";
+            for (SmsMessage message : messages) {
+                fullMessage += message.getMessageBody();//获取短信内容
+            }
+            abortBroadcast();
+            tv_fixed_value.setText(fullMessage);
+        }
     }
 }

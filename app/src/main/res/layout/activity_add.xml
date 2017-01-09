@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        android:background="#82e3f4"/>
+        android:background="@mipmap/logo"/>
 
     <LinearLayout
         android:layout_marginTop="50dp"

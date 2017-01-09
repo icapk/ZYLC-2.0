@@ -105,14 +105,14 @@ public class SecondFragment extends Fragment implements
 
     private void init() {
 
-        toolbar.setNavigationIcon(R.mipmap.icon_add);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent_add = new Intent(getActivity(),addActivity.class);
-                startActivity(intent_add);
-            }
-        });
+//        toolbar.setNavigationIcon(R.mipmap.icon_add);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                intent_add = new Intent(getActivity(),addActivity.class);
+//                startActivity(intent_add);
+//            }
+//        });
 
     }
 
