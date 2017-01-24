@@ -26,10 +26,10 @@ public class TkToolbar extends Toolbar {
 
     private View mView;
 
-    private EditText tb_search;
+
     private TextView tb_title;
     private ImageButton tb_rightButton;
-    private String tb_rightString;
+
 
     public TkToolbar(Context context) {
         this(context,null);
@@ -111,18 +111,7 @@ public class TkToolbar extends Toolbar {
             showTbTitle();
         }
     }
-    //显示toolbar的search
-    public void showTbSearch(){
-        if (tb_search !=null){
-            tb_search.setVisibility(VISIBLE);
-        }
-    }
-    //隐藏toolbar的search
-    public void hideTbSearch(){
-        if (tb_search !=null){
-            tb_search.setVisibility(GONE);
-        }
-    }
+
     //显示toolbar的title
     public void showTbTitle(){
         if (tb_title !=null){
