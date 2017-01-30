@@ -11,8 +11,8 @@
        android:id="@+id/toolbar"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:minHeight="?attr/actionBarSize"
-       android:background="?attr/colorPrimary">
+       android:minHeight="56dp"
+       android:background="@color/colorPrimary">
 
 
    </com.example.gte.sms_demo_12.bean.TkToolbar>

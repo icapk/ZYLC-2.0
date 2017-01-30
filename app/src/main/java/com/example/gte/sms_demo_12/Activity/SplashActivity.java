@@ -11,6 +11,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.gte.sms_demo_12.Fragment.SecondFragment;
@@ -24,6 +25,7 @@ public class SplashActivity extends Activity {
 
 	private RelativeLayout rlRoot;
 	private Button btn_jump;
+	private ImageView img_splash;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class SplashActivity extends Activity {
 		setContentView(R.layout.activity_splash);
 
 		rlRoot = (RelativeLayout) findViewById(R.id.rl_splash);
+		img_splash = (ImageView)findViewById(R.id.im_splash);
+		img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
 		btn_jump = (Button)findViewById(R.id.btn_jump);
 		btn_jump.setOnClickListener(new View.OnClickListener() {
