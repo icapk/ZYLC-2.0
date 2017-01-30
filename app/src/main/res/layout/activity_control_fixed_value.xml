@@ -17,126 +17,147 @@
             android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
 
-
-    <TextView
-        android:id="@+id/tv_fixed_value_number"
-        android:background="@drawable/corners_bg_tv"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="目标手机号"
-        android:textSize="20sp"
-        android:layout_weight="1"
-        android:layout_margin="20dp"
-        android:padding="10dp"
-        android:gravity="center"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        >
-
-        <TextView
-            android:id="@+id/tv_fixed_value"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:hint="显示定值"
-            android:background="@drawable/corners_bg_tv"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="设置序号："/>
-            <EditText
-                android:id="@+id/ed_num"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="01-14"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="设置数值："/>
-            <EditText
-                android:id="@+id/ed_value"
-                android:layout_width="170dp"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:hint="请查询定值定义表"/>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_set_fixed_value"
-            android:background="@drawable/center_letter_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:layout_marginLeft="33dp"
-            android:layout_marginRight="33dp"
-            android:text="设置定值"
-            />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Button
-                android:background="@drawable/center_letter_bg"
-                android:layout_gravity="center"
-                android:text="查询定值"
-                android:layout_width="150dp"
-                android:layout_height="80dp"
-                android:id="@+id/btn_check_fixed_value"
-                android:layout_marginRight="20dp"
-                />
+            <TextView
+                android:id="@+id/tv_fixed_value_number"
+                android:background="@drawable/corners_bg_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="目标手机号"
+                android:textSize="20sp"
+                android:layout_weight="2"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:gravity="center"/>
 
-            <Button
-            android:background="@drawable/center_letter_bg"
-            android:layout_gravity="center"
-            android:text="查看定值定义"
-            android:layout_width="150dp"
-            android:layout_height="80dp"
-            android:id="@+id/btn_check_fixed_value_define"
-            />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                >
+
+                <TextView
+                    android:id="@+id/tv_fixed_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:padding="15dp"
+                    android:gravity="center"
+                    android:hint="显示定值"
+                    android:background="@drawable/corners_bg_tv"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="设置序号："/>
+                    <EditText
+                        android:id="@+id/ed_num"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="01-14"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="设置数值："/>
+                    <EditText
+                        android:id="@+id/ed_value"
+                        android:layout_width="170dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:hint="请查询定值定义表"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_set_fixed_value"
+                    android:background="@drawable/center_letter_bg"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="设置定值"
+                    android:maxWidth="200dp"
+                    android:layout_margin="10dp"
+                    />
+
+                <Button
+                    android:background="@drawable/center_letter_bg"
+                    android:layout_gravity="center"
+                    android:text="查询定值"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="100dp"
+                    android:paddingRight="100dp"
+                    android:id="@+id/btn_check_fixed_value"
+                    android:layout_margin="10dp"
+                    />
+
+                <Button
+                    android:background="@drawable/center_letter_bg"
+                    android:layout_gravity="center"
+                    android:text="查看定值定义"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_margin="10dp"
+                    android:id="@+id/btn_check_fixed_value_define"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
         </LinearLayout>
 
-
-    </LinearLayout>
-
+    </ScrollView>
 
 
 </LinearLayout>

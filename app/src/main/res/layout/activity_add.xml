@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -26,120 +25,132 @@
 
     </android.support.v7.widget.Toolbar>
 
-   
-    <TextView
-        android:id="@+id/add_img_top"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:background="@mipmap/logo"/>
-
-    <LinearLayout
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:orientation="vertical"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/corners_bg"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingRight="15dp"
-            android:paddingLeft="15dp">
-
-            <TextView
-                android:id="@+id/add_Machine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="设备号："/>
-            <EditText
-                android:id="@+id/add_Machine_Num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="请输入设备号"
-                android:textColor="#4b4b4b"/>
-
-        </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/corners_bg"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingRight="15dp"
-            android:paddingLeft="15dp"
-            android:layout_marginTop="10dp">
+            android:layout_height="match_parent"
 
-            <TextView
-                android:id="@+id/add_Phone"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/add_img_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="手机号："/>
-            <EditText
-                android:id="@+id/add_Phone_Num"
-                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:background="@mipmap/logo"/>
+
+            <LinearLayout
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="请输入手机号"
-                android:textColor="#4b4b4b"
-                />
+                android:layout_gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:orientation="vertical"
+                >
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_bg"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:id="@+id/add_Machine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="设备号："/>
+                    <EditText
+                        android:id="@+id/add_Machine_Num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="请输入设备号"
+                        android:textColor="#4b4b4b"/>
+
+                </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/corners_bg"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingRight="15dp"
-            android:paddingLeft="15dp"
-            android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_bg"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
+                    android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/add_beizhu"
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/add_Phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="手机号："/>
+                    <EditText
+                        android:id="@+id/add_Phone_Num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="请输入手机号"
+                        android:textColor="#4b4b4b"
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_bg"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/add_beizhu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="备注名："/>
+
+                    <EditText
+                        android:id="@+id/add_beizhu_Name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="请输入备注号"
+                        android:textColor="#4b4b4b"
+                        />
+
+                </LinearLayout>
+                </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+
+
+
+            <Button
+                android:id="@+id/add_finish"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="备注名："/>
-
-            <EditText
-                android:id="@+id/add_beizhu_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="请输入备注号"
-                android:textColor="#4b4b4b"
-                />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/add_finish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/corners_bg_tv"
-        android:layout_marginTop="20dp"
-        android:layout_margin="20dp"
-        android:text="完成"
-        android:textSize="20sp"
-        android:textColor="#000000"
-
-       />
-
-
+                android:background="@drawable/corners_bg_tv"
+                android:layout_marginTop="20dp"
+                android:layout_margin="20dp"
+                android:text="完成"
+                android:textSize="20sp"
+                android:textColor="#000000"
+               />
 
 
 </LinearLayout>
