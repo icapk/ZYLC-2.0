@@ -42,13 +42,27 @@ public class control_time_Activity extends Activity implements View.OnClickListe
 
     private SmsManager smsmanager;
     private PendingIntent Pi;
-
-
-
+    private MessageReceiver messageReceiver;
+    private SendStatusReceiver sendStatusReceiver;
+    private IntentFilter sendFilter;
+    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_time);
+    
+        IntentFilter receiveFilter = new IntentFilter();
+        receiveFilter.addAction("android.provider.Telephony.SMS_RECEIVED");
+        receiveFilter.setPriority(1000);
+        messageReceiver = new MessageReceiver();
+        registerReceiver(messageReceiver,receiveFilter);
+    
+        sendFilter = new IntentFilter();
+        sendFilter.addAction("SEND_SMS_ACTION");
+        sendStatusReceiver = new SendStatusReceiver();
+        registerReceiver(sendStatusReceiver,sendFilter);
+        
         tv_number = (TextView) findViewById(R.id.tv_time_number);
         tv_time = (TextView) findViewById(R.id.tv_time);
         btn_check_time = (Button)findViewById(R.id.btn_check_time);
@@ -136,7 +150,15 @@ public class control_time_Activity extends Activity implements View.OnClickListe
                 fullMessage += message.getMessageBody();//获取短信内容
             }
             abortBroadcast();
+            if(address == pNum)//判断收到的短信是否有当前联系人发出，是，则显示，否则不在此界面显示出来
             tv_time.setText(fullMessage);
         }
+    }
+
+    protected void onDestory()
+    {
+        super.onDestroy();
+        unregisterReceiver(messageReceiver);
+        unregisterReceiver(sendStatusReceiver);
     }
 }

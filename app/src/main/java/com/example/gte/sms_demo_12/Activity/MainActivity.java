@@ -1,11 +1,14 @@
 package com.example.gte.sms_demo_12.Activity;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
@@ -33,6 +36,7 @@ public class MainActivity extends FragmentActivity {
 
     private long firstPressTime = 0;
     private Toolbar toolbar;
+
 
 
 
@@ -85,6 +89,25 @@ public class MainActivity extends FragmentActivity {
 
         return view;
     }
+
+//    /**
+//     * 设置虚拟按键和状态栏的状态
+//     * @param hasFocus
+//     */
+//    public void onWindowFocusChanged(boolean hasFocus ) {
+//        super.onWindowFocusChanged(hasFocus);
+//        if(hasFocus && Build.VERSION.SDK_INT >= 21) {//判断sdk版本是否大于21，是，则隐藏虚拟按键和状态栏
+//            View view = getWindow().getDecorView();
+//            //隐藏虚拟按键和状态栏
+//            view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+//            //显示虚拟按键和状态栏
+////            view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//            //设置状态栏透明
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+//
+//        }
+//    }
 
 
 

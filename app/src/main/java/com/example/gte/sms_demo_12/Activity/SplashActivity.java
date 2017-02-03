@@ -2,6 +2,8 @@ package com.example.gte.sms_demo_12.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -34,8 +36,23 @@ public class SplashActivity extends Activity {
 		setContentView(R.layout.activity_splash);
 
 		rlRoot = (RelativeLayout) findViewById(R.id.rl_splash);
-		img_splash = (ImageView)findViewById(R.id.im_splash);
-		img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+		//判断当前手机版本是否大于Android5.0，是，则隐藏虚拟按键和状态栏
+		if(Build.VERSION.SDK_INT >=21 ){
+			img_splash = (ImageView)findViewById(R.id.im_splash);
+			//设置隐藏虚拟按键
+			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+			//设置隐藏状态栏
+			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
+			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+			//设置状态栏状态为透明
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
+			getWindow().setNavigationBarColor(Color.TRANSPARENT);
+		}
+
+
 
 		btn_jump = (Button)findViewById(R.id.btn_jump);
 		btn_jump.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +117,25 @@ public class SplashActivity extends Activity {
 				finish();// 结束当前页面
 			}
 		});
+	}
+
+	/**
+	 * 设置虚拟按键和状态栏的状态
+	 * @param hasFocus
+	 */
+	public void onWindowFocusChanged(boolean hasFocus ) {
+		super.onWindowFocusChanged(hasFocus);
+		if(hasFocus && Build.VERSION.SDK_INT >= 21) {//判断sdk版本是否大于21，是，则隐藏虚拟按键和状态栏
+			View view = getWindow().getDecorView();
+			//隐藏虚拟按键和状态栏
+			view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+			//显示虚拟按键和状态栏
+//            view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+			//设置状态栏透明
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
+		}
 	}
 
 }

@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,11 +36,12 @@ public class changeActivity extends Activity implements View.OnClickListener {
     private String machine_num;
     private String phone_num;
     private String beizhu_name;
+
     private Toolbar add_toolbar;
 
     private MyDataBaseHelper dbHelper;
     private SQLiteDatabase db;
-    private TextView tv;
+    private ImageView tv;
 
     private String name;
     private String num;
@@ -61,7 +63,7 @@ public class changeActivity extends Activity implements View.OnClickListener {
 
         add_toolbar = (Toolbar) findViewById(R.id.add_toolbar);
 
-        tv = (TextView)findViewById(R.id.add_img_top);
+        tv = (ImageView)findViewById(R.id.add_img_top);
         tv_change = (TextView)findViewById(R.id.tv_add_change);
         tv_change.setText("修改");
 
@@ -90,9 +92,7 @@ public class changeActivity extends Activity implements View.OnClickListener {
 
         add_finish.setOnClickListener(this);
 
-        machine_num = add_machine_num.getText().toString();
-        phone_num = add_phone_num.getText().toString();
-        beizhu_name = add_beizhu_name.getText().toString();
+
 
     }
 
@@ -117,7 +117,13 @@ public class changeActivity extends Activity implements View.OnClickListener {
     }
 
     public void onClick(View v) {
+
+        machine_num = add_machine_num.getText().toString();
+        phone_num = add_phone_num.getText().toString();
+        beizhu_name = add_beizhu_name.getText().toString();
             switch (v.getId()){
+
+
                 case R.id.add_finish:
 
 

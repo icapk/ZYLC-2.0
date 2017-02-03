@@ -1,6 +1,7 @@
 package com.example.gte.sms_demo_12.Fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +28,7 @@ public class ThirdFragment extends Fragment{
     private Toolbar toolbar;
     private TextView tv_link;
     private ImageView logo;
+    private ImageView img;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,20 +38,18 @@ public class ThirdFragment extends Fragment{
         toolbar.setTitle("关于");
 
         tv_link = (TextView)view.findViewById(R.id.tv_link);
-        logo = (ImageView)view.findViewById(R.id.logo);
-        logo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SplashActivity.class);
-                startActivity(intent);
-            }
-        });
+        img = (ImageView)view.findViewById(R.id.imageView);
+
         tv_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"guxin",Toast.LENGTH_SHORT).show();
+                Uri uri = Uri.parse("http://gtesh.com");
+                Intent it = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(it);
             }
         });
+
+
 
         return view;
     }

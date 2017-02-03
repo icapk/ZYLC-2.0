@@ -68,7 +68,7 @@ public class FirstFragment extends Fragment {
 
         /**
          * 由于ViewPager没有setOnclickListener
-         * 利用setOnTouchListener设置ViewPager点击事件
+         * 利用setOnTouchListener设置ViewPager点击事件,检测ACTION_UP事件实现点击事件功能
          */
         myViewPager.setOnTouchListener(new View.OnTouchListener() {
                                            int flage = 0;

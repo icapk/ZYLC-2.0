@@ -5,8 +5,8 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.example.gte.sms_demo_12"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 9
+        targetSdkVersion 17  //当targetSdkVersion版本小于等于13时在应用下方的虚拟按键上显示menu
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,6 +31,6 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support:support-v4:25.0.0'
-    compile 'com.android.support:appcompat-v7:21.2.1'
+//    compile 'com.android.support:appcompat-v7:21.2.1'
 
 }

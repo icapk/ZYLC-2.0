@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -65,6 +66,16 @@ public class addActivity extends Activity implements View.OnClickListener {
 
         dbHelper = new MyDataBaseHelper(this,"Contact.db",null,1);
         db = dbHelper.getWritableDatabase();
+//        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+//        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        //设置隐藏虚拟按键
+//        tv.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//        //设置隐藏状态栏
+//        tv.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+//
+//        tv.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+//        tv.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//        tv.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         init();
 
 
@@ -100,8 +111,8 @@ public class addActivity extends Activity implements View.OnClickListener {
                     machine_num = add_machine_num.getText().toString();
                     phone_num = add_phone_num.getText().toString();
                     beizhu_name = add_beizhu_name.getText().toString();
-                    if(machine_num.length() == 0 || phone_num.length() ==0){
-                        Toast.makeText(this,"设备号或手机号不能为空",Toast.LENGTH_SHORT).show();
+                    if(machine_num.length() == 0 || phone_num.length() !=11){
+                        Toast.makeText(this,"请输入正确的设备号或手机号",Toast.LENGTH_SHORT).show();
                     }else {
                         ContentValues values = new ContentValues();
                         //add first data

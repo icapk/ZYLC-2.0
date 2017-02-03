@@ -116,8 +116,6 @@
                     android:text="查询定值"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="100dp"
-                    android:paddingRight="100dp"
                     android:id="@+id/btn_check_fixed_value"
                     android:layout_margin="10dp"
                     />

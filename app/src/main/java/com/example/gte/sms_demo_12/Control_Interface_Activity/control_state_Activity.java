@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -39,11 +40,27 @@ public class control_state_Activity extends Activity implements View.OnClickList
     private SmsManager smsmanager;
     private PendingIntent Pi;
 
+    private MessageReceiver messageReceiver;
+    private SendStatusReceiver sendStatusReceiver;
+    private IntentFilter sendFilter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_state);
+
+        IntentFilter receiveFilter = new IntentFilter();
+        receiveFilter.addAction("android.provider.Telephony.SMS_RECEIVED");
+        receiveFilter.setPriority(1000);
+        messageReceiver = new MessageReceiver();
+        registerReceiver(messageReceiver,receiveFilter);
+
+        sendFilter = new IntentFilter();
+        sendFilter.addAction("SEND_SMS_ACTION");
+        sendStatusReceiver = new SendStatusReceiver();
+        registerReceiver(sendStatusReceiver,sendFilter);
+
         tv_number = (TextView) findViewById(R.id.tv_state_number);
         tv_toolbar = (TextView) findViewById(R.id.tv_toolbar);
         tv_toolbar.setText("状态");
@@ -81,6 +98,7 @@ public class control_state_Activity extends Activity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+
         Tv_State = tv_state.getText().toString();
 
         switch (v.getId()) {
@@ -97,50 +115,70 @@ public class control_state_Activity extends Activity implements View.OnClickList
                 smsmanager.sendTextMessage(pNum, null, "预合", Pi, null);
                 break;
             case R.id.btn_hezha:
-                if (Tv_State == "分位")
+//                if (Tv_State == "分位"){
                     smsmanager.sendTextMessage(pNum, null, "合闸", Pi, null);
-                else {
-
-                    Toast toast = Toast.makeText(control_state_Activity.this, "请确定主机是否处于分闸状态", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                }
+//                    }else {
+//                    Toast toast = Toast.makeText(control_state_Activity.this, "请确定主机是否处于分闸状态", Toast.LENGTH_SHORT);
+//                    toast.setGravity(Gravity.CENTER, 0, 0);
+//                    toast.show();
+//                }
                 break;
             case R.id.btn_fenzha:
-                if (Tv_State == "合位")
+//                if (Tv_State == "合位")
                     smsmanager.sendTextMessage(pNum, null, "分闸", Pi, null);
-                else {
-                    Toast toast = Toast.makeText(control_state_Activity.this, "请确定主机是否处于合闸状态", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+//                else {
+//                    Toast toast = Toast.makeText(control_state_Activity.this, "请确定主机是否处于合闸状态", Toast.LENGTH_SHORT);
+//                    toast.setGravity(Gravity.CENTER, 0, 0);
+//                    toast.show();
+//                }
                     break;
 
 
-                }
+
 
         }
 
-        class MessageReceiver extends BroadcastReceiver {
+    }
+    class MessageReceiver extends BroadcastReceiver {
 
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Bundle bundle = intent.getExtras();
-                Object[] pdus = (Object[]) bundle.get("pdus");//提取短信信息
-                SmsMessage[] messages = new SmsMessage[pdus.length];
-                for (int i = 0; i < messages.length; i++) {
-                    messages[i] = createFromPdu((byte[]) pdus[i]);
-                }
-                String address = messages[0].getOriginatingAddress();
-                String fullMessage = "";
-                for (SmsMessage message : messages) {
-                    fullMessage += message.getMessageBody();//获取短信内容
-                }
-                abortBroadcast();
-                tv_state.setText(fullMessage);
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle bundle = intent.getExtras();
+            Object[] pdus = (Object[]) bundle.get("pdus");//提取短信信息
+            SmsMessage[] messages = new SmsMessage[pdus.length];
+            for (int i = 0; i < messages.length; i++) {
+                messages[i] = createFromPdu((byte[]) pdus[i]);
             }
-
-
+            String address = messages[0].getOriginatingAddress();
+            String fullMessage = "";
+            for (SmsMessage message : messages) {
+                fullMessage += message.getMessageBody();//获取短信内容
+            }
+            abortBroadcast();
+//            if(address == pNum)//判断收到的短信是否有当前联系人发出，是，则显示，否则不在此界面显示出来
+            tv_state.setText(fullMessage);
         }
+
+    }
+    class SendStatusReceiver extends BroadcastReceiver
+    {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (getResultCode() == RESULT_OK)
+            {
+                //短信发送成功
+                Toast.makeText(control_state_Activity.this,"短信发送成功，请等待...",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(control_state_Activity.this,"短信发送失败，请重新发送",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    protected void onDestory()
+    {
+        super.onDestroy();
+        unregisterReceiver(messageReceiver);
+        unregisterReceiver(sendStatusReceiver);
     }
 }
 

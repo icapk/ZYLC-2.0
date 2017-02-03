@@ -33,7 +33,7 @@
                     android:orientation="horizontal">
                 </LinearLayout>
 
-                <ImageView
+                <com.example.gte.sms_demo_12.Utils.AutoBgImageView
                     android:id="@+id/iv_red_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

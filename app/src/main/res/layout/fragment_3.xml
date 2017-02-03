@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     //Toolbar布局layout_height设置为wrap_content
+    <include layout="@layout/tb_fragment"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,41 +16,17 @@
         >
 
 
-        <ImageView
-            android:id="@+id/logo"
+        <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/logo"
-            android:layout_below="@+id/tv_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp" />
-
-
-        <TextView
-            android:text="www.gtesh.com"
-            android:textStyle="italic"
-            android:textSize="30sp"
-            android:textColor="#f25a5a"
-            android:autoLink="web"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_link"
-            android:layout_marginBottom="32dp"
-            android:layout_above="@+id/tv_title_eng"
-            android:layout_centerHorizontal="true"/>
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="固馨电气（上海）有限公司"
-            android:textColor="#1c70ef"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:id="@+id/tv_name"
-            android:layout_marginTop="65dp"
+            android:text="智能开关短信操作系统"
+            android:layout_gravity="top"
+            android:textColor="#4aa8e2"
+            android:textSize="23sp"
+            android:layout_marginTop="52dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/tv_title_eng"
@@ -59,22 +36,52 @@
             android:textColor="#4aa8e2"
             android:textSize="15sp"
             android:layout_gravity="center"
-            android:layout_marginBottom="61dp"
+            android:layout_marginBottom="28dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/logo"
-            android:layout_alignEnd="@+id/logo" />
+            android:layout_centerHorizontal="true"/>
 
         <TextView
-            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="智能开关短信操作系统"
-            android:layout_gravity="top"
-            android:textColor="#4aa8e2"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/tv_name"
-            android:layout_centerHorizontal="true" />
+            android:text="固馨电气（上海）有限公司"
+            android:textColor="#1c70ef"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:id="@+id/tv_name"
+            android:layout_marginBottom="12dp"
+            android:layout_above="@+id/tv_title_eng"
+            android:layout_centerHorizontal="true"/>
+
+        <com.example.gte.sms_demo_12.Utils.AutoBgImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@mipmap/zylc_barcode"
+            android:id="@+id/imageView"
+            android:layout_marginTop="63dp"
+            android:layout_below="@+id/tv_title"
+            android:layout_alignRight="@+id/tv_title_eng"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="扫描二维码，分享给你的朋友"
+            android:id="@+id/textView"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:text="www.gtesh.com"
+
+            android:textSize="30sp"
+            android:textColor="#f25a5a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_link"
+            android:layout_marginBottom="20dp"
+            android:layout_above="@+id/tv_name"
+            android:layout_centerHorizontal="true"/>
 
 
     </RelativeLayout>

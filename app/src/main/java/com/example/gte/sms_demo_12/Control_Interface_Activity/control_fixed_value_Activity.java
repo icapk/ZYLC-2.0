@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -37,12 +38,27 @@ public class control_fixed_value_Activity extends AppCompatActivity implements V
     private Button btn_set_fixed_value;
     private String value;
     private String num;
+    private MessageReceiver messageReceiver;
+    private SendStatusReceiver sendStatusReceiver;
+    private IntentFilter sendFilter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_fixed_value);
+
+        IntentFilter receiveFilter = new IntentFilter();
+        receiveFilter.addAction("android.provider.Telephony.SMS_RECEIVED");
+        receiveFilter.setPriority(1000);
+        messageReceiver = new MessageReceiver();
+        registerReceiver(messageReceiver,receiveFilter);
+
+        sendFilter = new IntentFilter();
+        sendFilter.addAction("SEND_SMS_ACTION");
+        sendStatusReceiver = new SendStatusReceiver();
+        registerReceiver(sendStatusReceiver,sendFilter);
+
         tv_number = (TextView) findViewById(R.id.tv_fixed_value_number);
         tv_toolbar = (TextView) findViewById(R.id.tv_toolbar);
         tv_toolbar.setText("定值");
@@ -60,8 +76,7 @@ public class control_fixed_value_Activity extends AppCompatActivity implements V
         btn_check_fixed_value_define.setOnClickListener(this);
 
         init();
-        num = set_num.getText().toString();
-        value = set_value.getText().toString();
+
 
         smsmanager = SmsManager.getDefault();
         Intent sentIntent = new Intent("SEND_SMS_ACTION");
@@ -77,10 +92,13 @@ public class control_fixed_value_Activity extends AppCompatActivity implements V
 
     @Override
     public void onClick(View v) {
+        num = set_num.getText().toString();
+        value = set_value.getText().toString();
         switch (v.getId()) {
+
             case R.id.btn_check_fixed_value:
 //                Toast.makeText(control_fixed_value_Activity.this,"查询定值",Toast.LENGTH_LONG).show();
-//                smsmanager.sendTextMessage(pNum, null, "查询定值", Pi, null);
+                smsmanager.sendTextMessage(pNum, null, "查询定值", Pi, null);
                 break;
             case R.id.btn_check_fixed_value_define:
                 //初始化一个自定义的Dialog
@@ -89,7 +107,7 @@ public class control_fixed_value_Activity extends AppCompatActivity implements V
                 break;
             case R.id.btn_set_fixed_value:
 //                Toast.makeText(control_fixed_value_Activity.this,"设置定值#"+num+"#"+value,Toast.LENGTH_LONG).show();
-                smsmanager.sendTextMessage(pNum, null, "设置定值#0"+num+"#"+value, Pi, null);
+                smsmanager.sendTextMessage(pNum, null, "设置定值#"+num+"#"+value, Pi, null);
                 break;
         }
         
@@ -114,7 +132,28 @@ public class control_fixed_value_Activity extends AppCompatActivity implements V
                 fullMessage += message.getMessageBody();//获取短信内容
             }
             abortBroadcast();
+            if(address == pNum)//判断收到的短信是否有当前联系人发出，是，则显示，否则不在此界面显示出来
             tv_fixed_value.setText(fullMessage);
         }
+    }
+    class SendStatusReceiver extends BroadcastReceiver
+    {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (getResultCode() == RESULT_OK)
+            {
+                //短信发送成功
+                Toast.makeText(control_fixed_value_Activity.this,"短信发送成功，请等待...",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(control_fixed_value_Activity.this,"短信发送失败，请重新发送",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    protected void onDestory()
+    {
+        super.onDestroy();
+        unregisterReceiver(messageReceiver);
+        unregisterReceiver(sendStatusReceiver);
     }
 }

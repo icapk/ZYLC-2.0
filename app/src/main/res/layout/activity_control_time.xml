@@ -67,7 +67,10 @@
                 android:text="查询时间"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="45dp"
                 android:textSize="30sp"
                 android:id="@+id/btn_check_time"
                 />
@@ -83,7 +86,10 @@
                 android:text="发送当前时间"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="45dp"
                 android:textSize="30sp"
                 android:id="@+id/btn_send_time"
                 />
