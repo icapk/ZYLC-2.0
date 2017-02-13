@@ -18,5 +18,5 @@
                    View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);      
 	4. 当targetSdkVersion版本小于等于13时在应用下方的虚拟按键上显示menu按钮
 	
-	 - 下面是页面展示 ![]ZYLC-2.0/preview/list.png）
+	 - 下面是页面展示 ![](ZYLC-2.0/preview/list.png)
  
