@@ -29,7 +29,6 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {//数据库第一次被创建的时候调用
         db.execSQL(CREATE_CONTACTS);
-        Toast.makeText(mContxt,"创建成功",Toast.LENGTH_SHORT).show();
     }
 
     @Override

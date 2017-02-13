@@ -33,6 +33,7 @@ public class left_word_style extends View{
     private onWordsChangeListener listener;
 
 
+
     public left_word_style(Context context) {
         super(context);
         init();

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 /**
  * Created by spring on 2017/2/4.
+ * 自定义ImageView显示，按下改变透明度，
  */
 
 public class AutoBgImageView extends ImageView {

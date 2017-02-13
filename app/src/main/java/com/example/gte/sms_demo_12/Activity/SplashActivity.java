@@ -43,7 +43,6 @@ public class SplashActivity extends Activity {
 			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 			//设置隐藏状态栏
 			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-
 			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 			img_splash.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -72,25 +71,21 @@ public class SplashActivity extends Activity {
 				0.5f);
 		animRotate.setDuration(5000);// 动画时间
 		animRotate.setFillAfter(true);// 保持动画结束状态
-
 		// 缩放动画
 		ScaleAnimation animScale = new ScaleAnimation(0, 1, 0, 1,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
 		animScale.setDuration(5000);
 		animScale.setFillAfter(true);// 保持动画结束状态
-
 		// 渐变动画
 		AlphaAnimation animAlpha = new AlphaAnimation(0, 1);
 		animAlpha.setDuration(5000);// 动画时间
 		animAlpha.setFillAfter(true);// 保持动画结束状态
-
 		// 动画集合
 		AnimationSet set = new AnimationSet(true);
-//		set.addAnimation(animRotate);
-//		set.addAnimation(animScale);
 		set.addAnimation(animAlpha);
-
+		set.addAnimation(animScale);
+		set.addAnimation(animRotate);
 		// 启动动画
 		rlRoot.startAnimation(set);
 
